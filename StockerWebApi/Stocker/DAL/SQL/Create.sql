@@ -1,7 +1,7 @@
 ﻿USE [master]
 GO
 
-/****** Object:  Database [StockMarketDB]    Script Date: 4/8/2019 10:05:54 AM ******/
+/****** Object:  Database [StockMarketDB]    Script Date: 4/8/2019 2:15:01 PM ******/
 CREATE DATABASE [StockMarketDB]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -111,3 +111,16 @@ GO
 
 ALTER DATABASE [StockMarketDB] SET  READ_WRITE 
 GO
+
+
+BULK INSERT Company
+FROM 'C:\workspace\Final Project\virtual-stock-market\StockerWebApi\SP500List.csv'
+WITH
+(
+    FORMAT = 'CSV', 
+    FIELDQUOTE = '"',
+    FIRSTROW = 2,
+    FIELDTERMINATOR = ',',  --CSV field delimiter
+    ROWTERMINATOR = '\n',   --Use to shift the control to next row
+    TABLOCK
+)
