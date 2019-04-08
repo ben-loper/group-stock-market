@@ -1,5 +1,7 @@
 <template>
-    <h1>Landing Page</h1>
+    <div>
+        <h1>Welcome to the login page</h1>
+    </div>
 </template>
 
 <script>
