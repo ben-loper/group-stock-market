@@ -18,10 +18,7 @@ namespace VendingService
         public enum eRole
         {
             Unknown = 0,
-            Administrator = 1,
-            Customer = 2,
-            Executive = 3,
-            Serviceman = 4
+            Customer = 1
         }
 
         /// <summary>
@@ -52,16 +49,6 @@ namespace VendingService
             }
         }
 
-        /// <summary>
-        /// Specifies if the user has administrator permissions
-        /// </summary>
-        public bool IsAdministrator
-        {
-            get
-            {
-                return RoleName == eRole.Administrator;
-            }
-        }
 
         /// <summary>
         /// Specifies if the user has customer permissions
@@ -73,28 +60,7 @@ namespace VendingService
                 return RoleName == eRole.Customer;
             }
         }
-
-        /// <summary>
-        /// Specifies if the user has executive permissions
-        /// </summary>
-        public bool IsExecutive
-        {
-            get
-            {
-                return RoleName == eRole.Executive;
-            }
-        }
-
-        /// <summary>
-        /// Specifies if the user has serviceman permissions
-        /// </summary>
-        public bool IsServiceman
-        {
-            get
-            {
-                return RoleName == eRole.Serviceman;
-            }
-        }
+        
 
         /// <summary>
         /// Specifies if the user has unknown permissions

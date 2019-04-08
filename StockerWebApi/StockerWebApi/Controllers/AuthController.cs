@@ -2,10 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SessionControllerData;
-using VendingService;
-using VendingService.Exceptions;
-using VendingService.Interfaces;
-using VendingService.Models;
+using Stocker.DAL;
 
 namespace VndrWebApi.Controllers
 {
@@ -15,10 +12,10 @@ namespace VndrWebApi.Controllers
         /// Manages the user authentication and authorization
         /// </summary>
         private RoleManager _roleMgr = null;
-        protected IVendingService _db = null;
+        protected IStockerDAO _db = null;
         private const string RoleMgrKey = "RoleManager";
 
-        public AuthController(IVendingService db, IHttpContextAccessor httpContext) : base(httpContext)
+        public AuthController(IStockerDAO db, IHttpContextAccessor httpContext) : base(httpContext)
         {
             _db = db;
 
