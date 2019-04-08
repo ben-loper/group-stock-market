@@ -29,6 +29,13 @@ namespace SessionControllerData
     /// </summary>
     public class SessionController : Controller
     {
+        private IHttpContextAccessor _httpContext = null;
+
+        public SessionController(IHttpContextAccessor httpContext)
+        {
+            _httpContext = httpContext;
+        }
+
         public void SetSessionData<T>(string key, T data)
         {
             HttpContext.Session.Set<T>(key, data);
