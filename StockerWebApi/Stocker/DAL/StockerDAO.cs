@@ -15,32 +15,29 @@ namespace Stocker.DAL
             _connectionString = connectionString;
         }
 
-        public IList<Portfolio> GetPortfolio()
+        public IList<Portfolio> GetPortfolio(int id)
         {
-            IList<Portfolio> portfolios = new List<Portfolio>();
+            IList<Portfolio> portfolio = new List<Portfolio>();
 
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
                 conn.Open();
 
-                SqlCommand cmd = new SqlCommand("SELECT parkCode, parkName, state, parkDescription FROM park;", conn);
+                SqlCommand cmd = new SqlCommand("SELECT Symbol, NumberOfShares FROM Portfolio WHERE UserId = id;", conn);
 
                 SqlDataReader reader = cmd.ExecuteReader();
 
                 while (reader.Read())
                 {
-                    ParkListViewModel park = new ParkListViewModel();
-                    park.ParkCode = Convert.ToString(reader["parkCode"]);
-                    park.ParkName = Convert.ToString(reader["parkName"]);
-                    park.State = Convert.ToString(reader["state"]);
-                    park.ParkDescription = Convert.ToString(reader["parkDescription"]);
+                    Portfolio stock = new Portfolio();
+                    stock.Symbol = Convert.ToString(reader["Symbol"]);
+                    stock.NumberOfShares = Convert.ToInt32(reader["NumberOfShares"]);
 
-
-                    portfolios.Add(park);
+                    portfolio.Add(stock);
                 }
             }
 
-            return parks;
+            return portfolio;
         }
     }
     }
