@@ -1,4 +1,4 @@
-# stocker-vue
+# vue-stocker
 
 ## Project setup
 ```
