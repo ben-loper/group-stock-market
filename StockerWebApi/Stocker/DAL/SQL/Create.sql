@@ -1,4 +1,7 @@
-﻿USE [master]
+﻿
+
+
+USE [master]
 GO
 /****** Object:  Database [StockMarketDB]    Script Date: 4/8/2019 2:59:13 PM ******/
 CREATE DATABASE [StockMarketDB]
@@ -154,8 +157,11 @@ ALTER DATABASE [StockMarketDB] SET  READ_WRITE
 GO
 
 
+USE StockMarketDB
+Go
+
 BULK INSERT Company
-FROM 'C:\workspace\Final Project\virtual-stock-market\StockerWebApi\SP500List.csv'
+FROM 'C:\workspace\team\virtual-stock-market\StockerWebApi\Stocker\DAL\SQL\SP500List.csv'
 WITH
 (
     FORMAT = 'CSV', 
