@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Stocker.Models;
 using System.Data.SqlClient;
+using VendingService.Models;
 
 namespace Stocker.DAL
 {
@@ -78,7 +79,69 @@ namespace Stocker.DAL
             return result;
         }
 
-        
+        public int AddUserItem(UserItem item)
+        {
+            const string sql = "INSERT [User] (FirstName, LastName, Username, Hash, Salt) " +
+                               "VALUES (@FirstName, @LastName, @Username, @Hash, @Salt);";
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand(sql + _getLastIdSQL, conn);
+                cmd.Parameters.AddWithValue("@FirstName", item.FirstName);
+                cmd.Parameters.AddWithValue("@LastName", item.LastName);
+                cmd.Parameters.AddWithValue("@Username", item.Username);
+                cmd.Parameters.AddWithValue("@Hash", item.Hash);
+                cmd.Parameters.AddWithValue("@Salt", item.Salt);
+                item.Id = (int)cmd.ExecuteScalar();
+            }
+
+            return item.Id;
+        }
+
+        public UserItem GetUserItem(int userId)
+        {
+            UserItem user = null;
+            const string sql = "SELECT * From [User] WHERE Id = @Id;";
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@Id", userId);
+                var reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    user = GetUserItemFromReader(reader);
+                }
+            }
+
+            if (user == null)
+            {
+                throw new Exception("User does not exist.");
+            }
+
+            return user;
+        }
+
+        private UserItem GetUserItemFromReader(SqlDataReader reader)
+        {
+            UserItem item = new UserItem();
+
+            item.Id = Convert.ToInt32(reader["Id"]);
+            item.FirstName = Convert.ToString(reader["FirstName"]);
+            item.LastName = Convert.ToString(reader["LastName"]);
+            item.Username = Convert.ToString(reader["Username"]);
+            item.Salt = Convert.ToString(reader["Salt"]);
+            item.Hash = Convert.ToString(reader["Hash"]);
+
+            return item;
+        }
+
+
+
+
 
 
     }

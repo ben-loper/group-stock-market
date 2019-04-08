@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using VendingService.Models;
 
 namespace Stocker.DAL
 {
@@ -10,5 +11,9 @@ namespace Stocker.DAL
         IList<Portfolio> GetPortfolio(int id);
 
         bool AddTransaction(int userId, string symbol, int numberOfShares, decimal price, string buyOrSell);
+
+        int AddUserItem(UserItem item);
+
+        UserItem GetUserItem(int userId);
     }
 }
