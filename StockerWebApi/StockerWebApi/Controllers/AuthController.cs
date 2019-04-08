@@ -3,10 +3,13 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SessionControllerData;
 using Stocker.DAL;
+<<<<<<< HEAD
 using Stocker.Models;
 using VendingService;
 using VendingService.Exceptions;
 using VendingService.Models;
+=======
+>>>>>>> ba0a293c15c49598078b7027166be941498a0c87
 
 namespace VndrWebApi.Controllers
 {
