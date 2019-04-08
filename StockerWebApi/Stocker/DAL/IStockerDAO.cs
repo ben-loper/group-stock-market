@@ -7,6 +7,6 @@ namespace Stocker.DAL
 {
     public interface IStockerDAO
     {
-        IList<Portfolio> GetPortfolio();
+        IList<Portfolio> GetPortfolio(int id);
     }
 }
