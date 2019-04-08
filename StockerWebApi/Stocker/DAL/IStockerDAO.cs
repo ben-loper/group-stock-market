@@ -6,5 +6,6 @@ namespace Stocker.DAL
 {
     public interface IStockerDAO
     {
+
     }
 }

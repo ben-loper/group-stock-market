@@ -6,5 +6,13 @@ namespace Stocker.DAL
 {
     public class StockerDAO : IStockerDAO
     {
+        private string _connectionString;
+
+        public StockerDAO(string connectionString)
+        {
+            _connectionString = connectionString;
+        }
+
+
     }
 }
