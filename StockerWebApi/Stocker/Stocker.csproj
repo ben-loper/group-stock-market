@@ -6,7 +6,8 @@
 
   <ItemGroup>
     <Folder Include="BusinessLogic\" />
-    <Folder Include="DAL\" />
+    <Folder Include="DAL\Interfaces\" />
+    <Folder Include="DAL\Mocks\" />
     <Folder Include="Exceptions\" />
   </ItemGroup>
 
