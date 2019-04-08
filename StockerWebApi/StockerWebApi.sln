@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.539
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StockerWebApi", "StockerWebApi\StockerWebApi.csproj", "{ABAF102C-F1F3-4D86-AE8B-AF5E9A6EBB1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Stocker", "Stocker\Stocker.csproj", "{A4B514CC-07A8-4885-8FD2-A71BF7AE179F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{ABAF102C-F1F3-4D86-AE8B-AF5E9A6EBB1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ABAF102C-F1F3-4D86-AE8B-AF5E9A6EBB1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ABAF102C-F1F3-4D86-AE8B-AF5E9A6EBB1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ABAF102C-F1F3-4D86-AE8B-AF5E9A6EBB1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A4B514CC-07A8-4885-8FD2-A71BF7AE179F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A4B514CC-07A8-4885-8FD2-A71BF7AE179F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A4B514CC-07A8-4885-8FD2-A71BF7AE179F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A4B514CC-07A8-4885-8FD2-A71BF7AE179F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D8F5A4CB-C176-4676-B5C3-BCE5CBFFF021}
+	EndGlobalSection
+EndGlobal
