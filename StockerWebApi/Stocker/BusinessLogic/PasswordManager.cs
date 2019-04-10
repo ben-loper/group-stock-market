@@ -3,7 +3,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace VendingService
+namespace Stockr
 {
     /// <summary>
     /// Used to manage password verification, hash generation, salt generation, and encryption

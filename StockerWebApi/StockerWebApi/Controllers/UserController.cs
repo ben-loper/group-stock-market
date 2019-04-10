@@ -5,17 +5,17 @@ using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using VendingService;
-using VendingService.Exceptions;
-using VendingService.Interfaces;
-using VendingService.Models;
-using VndrWebApi.Models;
+using Stocker.DAL;
+using Stocker.Models;
+using StockerWebApi.Models;
+using Stockr;
 
-namespace VndrWebApi.Controllers
+
+namespace Stockr
 {
     public class UserController : AuthController
     {
-        public UserController(IVendingService db, IHttpContextAccessor httpContext) : base(db, httpContext)
+        public UserController(IStockerDAO db, IHttpContextAccessor httpContext) : base(db, httpContext)
         {
 
         }
@@ -25,7 +25,7 @@ namespace VndrWebApi.Controllers
         public ActionResult<IEnumerable<UserItem>> Get()
         {
             var result = Json(_db.GetUserItems());
-            return GetAuthenticatedJson(result, (Role.IsExecutive || Role.IsAdministrator));
+            return GetAuthenticatedJson(result, (Role.IsCustomer));
         }
 
         [HttpPost]

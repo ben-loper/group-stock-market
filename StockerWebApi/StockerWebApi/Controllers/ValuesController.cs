@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace StockerWebApi.Controllers
+namespace Stockr
 {
     [Route("api/[controller]")]
     [ApiController]

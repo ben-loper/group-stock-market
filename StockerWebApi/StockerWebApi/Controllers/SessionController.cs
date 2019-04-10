@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
-namespace SessionControllerData
+namespace Stockr
 {
     public static class SessionExtensions
     {

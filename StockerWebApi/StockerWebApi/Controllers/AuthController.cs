@@ -1,16 +1,12 @@
 ﻿using System;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using SessionControllerData;
 using Stocker.DAL;
-
 using Stocker.Models;
-using VendingService;
-using VendingService.Exceptions;
-using VendingService.Models;
+using Stockr;
 
 
-namespace VndrWebApi.Controllers
+namespace Stockr
 {
     public class AuthController : SessionController
     {
@@ -169,6 +165,17 @@ namespace VndrWebApi.Controllers
                 result = Json(new { error = "User is not authenticated." });
             }
             return result;
+        }
+
+        /// <summary>
+        /// RoleManager used to validate user permissions and have access to the current user information
+        /// </summary>
+        public RoleManager Role
+        {
+            get
+            {
+                return _roleMgr;
+            }
         }
     }
 }

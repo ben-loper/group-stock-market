@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using VendingService.Models;
 
-namespace VendingService
+namespace Stockr
 {
     /// <summary>
     /// Holds a user and manages their permissions

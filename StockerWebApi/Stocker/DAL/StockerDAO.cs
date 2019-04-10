@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Stocker.Models;
 using System.Data.SqlClient;
-using VendingService.Models;
+using Stockr;
 
 namespace Stocker.DAL
 {
@@ -139,11 +139,156 @@ namespace Stocker.DAL
             return item;
         }
 
+        public UserItem GetUserItem(string username)
+        {
+            UserItem user = null;
+            const string sql = "SELECT * From [User] WHERE Username = @Username;";
 
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@Username", username);
+                var reader = cmd.ExecuteReader();
 
+                while (reader.Read())
+                {
+                    user = GetUserItemFromReader(reader);
+                }
+            }
 
+            if (user == null)
+            {
+                throw new Exception("User does not exist.");
+            }
+
+            return user;
+        }
+
+        public List<UserItem> GetUserItems()
+        {
+            List<UserItem> users = new List<UserItem>();
+            const string sql = "Select * From [User];";
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                var reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    users.Add(GetUserItemFromReader(reader));
+                }
+            }
+
+            return users;
+        }
+
+        public int AddRoleItem(RoleItem item)
+        {
+            const string sql = "INSERT RoleItem (Id, Name) " +
+                               "VALUES (@Id, @Name);";
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand(sql + _getLastIdSQL, conn);
+                cmd.Parameters.AddWithValue("@Id", item.Id);
+                cmd.Parameters.AddWithValue("@Name", item.Name);
+                cmd.ExecuteNonQuery();
+            }
+
+            return item.Id;
+        }
+        public RoleItem GetRoleItem(int id)
+        {
+            RoleItem roleItem = new RoleItem();
+            const string sql = "SELECT * FROM RoleItem WHERE Id = @Id;";
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@Id", id);
+                var reader = cmd.ExecuteReader();
+
+                if (reader.Read())
+                {
+                    roleItem = GetRoleItemFromReader(reader);
+                }
+            }
+
+            return roleItem;
+        }
+        public List<RoleItem> GetRoleItems()
+        {
+            List<RoleItem> roles = new List<RoleItem>();
+            const string sql = "Select * From RoleItem;";
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                var reader = cmd.ExecuteReader();
+
+                while (reader.Read())
+                {
+                    roles.Add(GetRoleItemFromReader(reader));
+                }
+            }
+
+            return roles;
+        }
+
+        private RoleItem GetRoleItemFromReader(SqlDataReader reader)
+        {
+            RoleItem item = new RoleItem();
+
+            item.Id = Convert.ToInt32(reader["Id"]);
+            item.Name = Convert.ToString(reader["Name"]);
+
+            return item;
+        }
+
+        public bool UpdateRoleItem(RoleItem item)
+        {
+            bool isSuccessful = false;
+
+            const string sql = "UPDATE RoleItem SET Name = @Name WHERE Id = @Id;";
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@Name", item.Name);
+                cmd.Parameters.AddWithValue("@Id", item.Id);
+                if (cmd.ExecuteNonQuery() == 1)
+                {
+                    isSuccessful = true;
+                }
+            }
+
+            return isSuccessful;
+        }
+
+        public void DeleteRoleItem(int id)
+        {
+            const string sql = "DELETE FROM RoleItem WHERE Id = @Id;";
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                conn.Open();
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@Id", id);
+                cmd.ExecuteNonQuery();
+            }
+        }
 
 
     }
-    
+
 }
+    

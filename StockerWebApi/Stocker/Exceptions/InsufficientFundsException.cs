@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VendingService.Exceptions
+namespace Stockr
 {
     /// <summary>
     /// Specifies that there are insufficient funds for the intended purchase

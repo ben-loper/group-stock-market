@@ -4,19 +4,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using VendingService.Interfaces;
-using VendingService.Models;
-using VndrWebApi.Models;
+using Stocker.DAL;
+using Stocker.Models;
+using StockerWebApi;
+using StockerWebApi.Models;
 
-namespace VndrWebApi.Controllers
+namespace Stockr
 {
     [Route("api/[controller]")]
     [ApiController]
     public class RoleController : ControllerBase
     {
-        private IVendingService _db = null;
+        private IStockerDAO _db = null;
 
-        public RoleController(IVendingService db)
+        public RoleController(IStockerDAO db)
         {
             _db = db;
         }
