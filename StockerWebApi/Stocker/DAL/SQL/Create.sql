@@ -1,9 +1,6 @@
-﻿
-
-
-USE [master]
+﻿USE [master]
 GO
-/****** Object:  Database [StockMarketDB]    Script Date: 4/8/2019 2:59:13 PM ******/
+/****** Object:  Database [StockMarketDB]    Script Date: 4/10/2019 5:19:29 PM ******/
 CREATE DATABASE [StockMarketDB]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -80,7 +77,7 @@ ALTER DATABASE [StockMarketDB] SET QUERY_STORE = OFF
 GO
 USE [StockMarketDB]
 GO
-/****** Object:  Table [dbo].[Company]    Script Date: 4/8/2019 2:59:13 PM ******/
+/****** Object:  Table [dbo].[Company]    Script Date: 4/10/2019 5:19:30 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -88,25 +85,50 @@ GO
 CREATE TABLE [dbo].[Company](
 	[Symbol] [varchar](50) NOT NULL,
 	[Name] [varchar](50) NOT NULL,
-	[Sector] [varchar](50) NOT NULL
-) ON [PRIMARY]
-GO
-/****** Object:  Table [dbo].[Portfolio]    Script Date: 4/8/2019 2:59:13 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-CREATE TABLE [dbo].[Portfolio](
-	[Symbol] [nchar](10) NOT NULL,
-	[NumberOfShares] [int] NOT NULL,
-	[UserId] [int] NULL,
- CONSTRAINT [PK_Portfolio] PRIMARY KEY CLUSTERED 
+	[Sector] [varchar](50) NOT NULL,
+ CONSTRAINT [PK_Company] PRIMARY KEY CLUSTERED 
 (
 	[Symbol] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Transactions]    Script Date: 4/8/2019 2:59:13 PM ******/
+/****** Object:  Table [dbo].[Favorites]    Script Date: 4/10/2019 5:19:30 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Favorites](
+	[Id] [int] NOT NULL,
+	[Symbol] [varchar](10) NOT NULL,
+	[UserId] [int] NOT NULL,
+ CONSTRAINT [PK_Favorites] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY],
+ CONSTRAINT [AK_Symbol] UNIQUE NONCLUSTERED 
+(
+	[Symbol] ASC,
+	[UserId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Portfolio]    Script Date: 4/10/2019 5:19:30 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Portfolio](
+	[Id] [int] NOT NULL,
+	[Symbol] [varchar](50) NOT NULL,
+	[NumberOfShares] [int] NOT NULL,
+	[UserId] [int] NOT NULL,
+ CONSTRAINT [PK_Portfolio] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Transactions]    Script Date: 4/10/2019 5:19:30 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -125,7 +147,7 @@ CREATE TABLE [dbo].[Transactions](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[User]    Script Date: 4/8/2019 2:59:13 PM ******/
+/****** Object:  Table [dbo].[User]    Script Date: 4/10/2019 5:19:30 PM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -143,8 +165,20 @@ CREATE TABLE [dbo].[User](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-ALTER TABLE [dbo].[Portfolio]  WITH CHECK ADD FOREIGN KEY([UserId])
+ALTER TABLE [dbo].[Favorites]  WITH CHECK ADD  CONSTRAINT [FK_Favorites_User] FOREIGN KEY([UserId])
 REFERENCES [dbo].[User] ([Id])
+GO
+ALTER TABLE [dbo].[Favorites] CHECK CONSTRAINT [FK_Favorites_User]
+GO
+ALTER TABLE [dbo].[Portfolio]  WITH CHECK ADD  CONSTRAINT [FK__Portfolio__UserI__4E88ABD4] FOREIGN KEY([UserId])
+REFERENCES [dbo].[User] ([Id])
+GO
+ALTER TABLE [dbo].[Portfolio] CHECK CONSTRAINT [FK__Portfolio__UserI__4E88ABD4]
+GO
+ALTER TABLE [dbo].[Portfolio]  WITH CHECK ADD  CONSTRAINT [FK_Portfolio_Company] FOREIGN KEY([Symbol])
+REFERENCES [dbo].[Company] ([Symbol])
+GO
+ALTER TABLE [dbo].[Portfolio] CHECK CONSTRAINT [FK_Portfolio_Company]
 GO
 ALTER TABLE [dbo].[Transactions]  WITH CHECK ADD  CONSTRAINT [FK_Transactions_User] FOREIGN KEY([UserId])
 REFERENCES [dbo].[User] ([Id])
@@ -155,6 +189,7 @@ USE [master]
 GO
 ALTER DATABASE [StockMarketDB] SET  READ_WRITE 
 GO
+
 
 
 USE StockMarketDB
