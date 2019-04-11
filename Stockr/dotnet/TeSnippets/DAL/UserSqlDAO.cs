@@ -35,9 +35,9 @@ namespace Stockr.DAL
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand("INSERT INTO [User] VALUES (@firstName, @lastName, @username, @password, @salt, @role);", conn);
+                    cmd.Parameters.AddWithValue("@username", user.Username);
                     cmd.Parameters.AddWithValue("@firstName", user.FirstName);
                     cmd.Parameters.AddWithValue("@lastName", user.LastName);
-                    cmd.Parameters.AddWithValue("@username", user.Username);
                     cmd.Parameters.AddWithValue("@password", user.Password);
                     cmd.Parameters.AddWithValue("@salt", user.Salt);
                     cmd.Parameters.AddWithValue("@role", user.Role);

@@ -22,5 +22,13 @@ namespace Stockr.Models.Account
         /// </summary>
         [Required]
         public string Password { get; set; }
+
+        [Required]
+        public string FirstName { get; set; }
+
+        [Required]
+        public string LastName { get; set; }
+
+
     }
 }
