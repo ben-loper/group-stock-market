@@ -34,7 +34,9 @@ namespace Stockr.DAL
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("INSERT INTO users VALUES (@username, @password, @salt, @role);", conn);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO [User] VALUES (@firstName, @lastName, @username, @password, @salt, @role);", conn);
+                    cmd.Parameters.AddWithValue("@firstName", user.FirstName);
+                    cmd.Parameters.AddWithValue("@lastName", user.LastName);
                     cmd.Parameters.AddWithValue("@username", user.Username);
                     cmd.Parameters.AddWithValue("@password", user.Password);
                     cmd.Parameters.AddWithValue("@salt", user.Salt);
@@ -62,7 +64,7 @@ namespace Stockr.DAL
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("DELETE FROM users WHERE id = @id;", conn);
+                    SqlCommand cmd = new SqlCommand("DELETE FROM [User] WHERE id = @id;", conn);
                     cmd.Parameters.AddWithValue("@id", user.Id);                    
 
                     cmd.ExecuteNonQuery();
@@ -89,7 +91,7 @@ namespace Stockr.DAL
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("SELECT * FROM USERS WHERE username = @username;", conn);
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM [User] WHERE Username = @username;", conn);
                     cmd.Parameters.AddWithValue("@username", username);
 
                     SqlDataReader reader = cmd.ExecuteReader();
@@ -119,7 +121,7 @@ namespace Stockr.DAL
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("UPDATE users SET password = @password, salt = @salt, role = @role WHERE id = @id;", conn);                    
+                    SqlCommand cmd = new SqlCommand("UPDATE [User] SET password = @password, salt = @salt, role = @role WHERE id = @id;", conn);                    
                     cmd.Parameters.AddWithValue("@password", user.Password);
                     cmd.Parameters.AddWithValue("@salt", user.Salt);
                     cmd.Parameters.AddWithValue("@role", user.Role);

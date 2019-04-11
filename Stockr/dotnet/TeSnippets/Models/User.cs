@@ -16,6 +16,10 @@ namespace Stockr.Models
         /// </summary>        
         public int Id { get; set; }
 
+        public string FirstName { get; set; }
+
+        public string LastName { get; set; }
+
         /// <summary>
         /// The user's username.
         /// </summary>        
