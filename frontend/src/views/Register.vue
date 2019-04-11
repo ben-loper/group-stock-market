@@ -1,7 +1,7 @@
 <template>
   <div id="register" class="text-center">
     <form class="form-register" @submit.prevent="register">
-      <img class="mb-4" src="../assets/telogo.png" alt width="72" height="72" />
+      <img class="logo" src="../assets/Stockrlogo.png" />
       <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         There were problems registering this user.
@@ -53,10 +53,10 @@
         v-model="user.confirmPassword"
         required
       />
-      <router-link :to="{ name: 'login' }">
+      <router-link :to="{ name: 'login' }" style="color: #611aa6;">
         Have an account?
       </router-link>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">
+      <button class="btn btn-lg btn-primary btn-block" type="submit" style="background-color: #611aa6;">
         Create Account
       </button>
     </form>
