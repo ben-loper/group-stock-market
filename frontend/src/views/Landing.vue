@@ -1,20 +1,32 @@
 <template>
     <div id="landing">
-        <h1>Stockr</h1>
-        <div class="row">
-            <div class="column">
-                <p id="description">
+        
+        <center>
+            <img src="../assets/Stockrlogo.png" id="logo" />
+        </center>
+    
+        <div>    
+            <h2 style="float: left; margin-left: 10%; width: 35%;">What IS Stockr?</h2>
+            <h2 style="margin-left: 55%; margin-right: 10%;">Market News</h2>
+        </div>
+
+                <div id="description">
                     Stockr is the world's greatest stock purchasing/tracking application.
                     You can manage your portfolio, buy and sell stocks, follow favorites, and more!
                     Over three people worldwide are getting things done with Stockr. What will YOU do?
-                </p>
-            </div>
-            <div class="column">
-                <div id="marketNews">
-                    Here is the space where market news type stuff will go!
                 </div>
-            </div>
-        </div>
+            
+                <div id="marketNews">
+                    Here is the space where market news type stuff will go! I've filled out this space
+                    with additional words and stuff just so it'll kind of be the size that we want it
+                    to be. Thank you for reading this message.
+                </div>
+
+                <div id="marketStuff">
+                    Here's where the market stuff would go. There should be like maybe a carousel of top stocks
+                    rotating through right here or some such thing.
+                </div>
+        
     </div>
 </template>
 
@@ -26,22 +38,37 @@ export default {
 
 <style>
 
+#marketStuff {
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 5px;
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 30pt;
+}
+
 #description {
     border-style: solid;
     border-width: 2px;
+    border-radius: 5px;
+    float: left;
+    margin-left: 10%;
+    width: 35%;
 }
 
 #marketNews {
     border-style: solid;
     border-width: 2px;
+    border-radius: 5px;
+    margin-left: 55%;
+    margin-right: 10%;
 }
 
-.row {
-  display: flex;
-}
-
-.column {
-  flex: 50%;
+#logo {
+    width: 300px;
+    height: auto;
+    padding-bottom: 10pt;
+    padding-top: 10pt;
 }
 
 </style>
