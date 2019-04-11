@@ -131,6 +131,8 @@ form {
 }
 .form-signin .form-control:focus {
   z-index: 2;
+  border-color: #611aa6;
+  box-shadow: 0 0 10px #611aa6;
 }
 .form-signin input[type='text'] {
   margin-bottom: 10px;
