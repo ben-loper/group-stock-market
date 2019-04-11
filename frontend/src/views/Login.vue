@@ -1,7 +1,7 @@
 <template>
   <div id="login" class="text-center">
     <form class="form-signin" @submit.prevent="login">
-      <img class="mb-4" src="../assets/telogo.png" alt width="72" height="72" />
+      <img class="logo" src="../assets/Stockrlogo.png" />
       <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
       <div class="alert alert-danger" role="alert" v-if="invalidCredentials">
         Invalid username and password!
@@ -28,10 +28,10 @@
         v-model="user.password"
         required
       />
-      <router-link :to="{ name: 'register' }">
+      <router-link :to="{ name: 'register' }" style="color: #611aa6;">
         Need an account?
       </router-link>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">
+      <button class="btn btn-lg btn-primary btn-block" type="submit" style="background-color: #611aa6;">
         Sign in
       </button>
     </form>
@@ -114,6 +114,12 @@ form {
   max-width: 330px;
   padding: 15px;
   margin: auto;
+}
+
+.logo {
+  width: 55%;
+  border-radius: 5px;
+  margin-bottom: 4%;
 }
 
 .form-signin .form-control {
