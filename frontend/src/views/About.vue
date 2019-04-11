@@ -12,7 +12,7 @@
             <div class="our-image">
             <img src="../assets/Adam-stockr.jpg" />
             </div>
-            <div class="our-image">
+            <div class="our-image" id="john-image">
             <img src="../assets/John-stockr.jpg" />
             </div>
             <div class="our-image">
@@ -44,6 +44,7 @@ export default {
     margin-left: 5%;
     margin-top: 3%;
     margin-right: 5%;
+    justify-items: center;
 }
 
 .our-image>img {
@@ -54,4 +55,9 @@ export default {
 .our-image {
     width: 25%;
 }
+
+#john-image {
+    width: 24%;
+}
+
 </style>
