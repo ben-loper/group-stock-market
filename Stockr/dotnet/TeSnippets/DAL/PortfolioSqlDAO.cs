@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace StockrWebApi.DAL
 {
-    public class PortfolioSqlDAO
+    public class PortfolioSqlDAO : IPortfolioDAO
     {
         private readonly string connectionString;
 
@@ -43,7 +43,7 @@ namespace StockrWebApi.DAL
 
                     if (reader.Read())
                     {
-                        portfolio = MapRowToSnippet(reader);
+                        portfolio = MapRowToPortfolio(reader);
                     }
                 }
 
@@ -101,7 +101,7 @@ namespace StockrWebApi.DAL
         /// </summary>
         /// <param name="snippet"></param>
         /// <returns></returns>
-        public Portfolio CreateSnippet(Portfolio portfolio)
+        public Portfolio CreatePortfolio(Portfolio portfolio)
         {
             try
             {
@@ -177,7 +177,7 @@ namespace StockrWebApi.DAL
             }
         }
 
-        private Portfolio MapRowToSnippet(SqlDataReader reader)
+        private Portfolio MapRowToPortfolio(SqlDataReader reader)
         {
             return new Portfolio()
             {
