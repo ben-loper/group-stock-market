@@ -29,7 +29,7 @@
       <label for="lastName" class="sr-only">Last Name</label>
       <input
         type="text"
-        id="firstName"
+        id="lastName"
         class="form-control"
         placeholder="Last Name"
         v-model="user.lastName"
