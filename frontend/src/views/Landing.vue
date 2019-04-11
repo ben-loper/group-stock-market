@@ -1,6 +1,34 @@
 <template>
     <div id="landing">
-        <h1>This will be the landing page</h1>
-        <h2>additional info here</h2>
+        <h1>Stockr</h1>
+        <p id="description">
+            Stockr is the world's greatest stock purchasing/tracking application.
+            You can manage your portfolio, buy and sell stocks, follow favorites, and more!
+            Over three people worldwide are getting things done with Stockr. What will YOU do?
+        </p>
+        <div id="marketNews">
+            Here is the space where market news type stuff will go!
+        </div>
+
     </div>
 </template>
+
+<script>
+export default {
+
+}
+</script>
+
+<style>
+
+#description {
+    border-style: solid;
+    border-width: 2px;
+}
+
+#marketNews {
+    border-style: solid;
+    border-width: 2px;
+}
+
+</style>
