@@ -34,7 +34,7 @@ namespace StockrWebApi.Controllers
         }
 
         [HttpGet]
-        //[Authorize]
+        [Authorize]
         public IEnumerable<Portfolio> List()
         {
             return portfolioDao.GetPortfolio(GetCurrentUserId());
