@@ -1,7 +1,8 @@
 <template>
+<div>
+  <default-layout></default-layout>
   <div id="login" class="text-center">
     <form class="form-signin" @submit.prevent="login">
-      <img class="logo" src="../assets/Stockrlogo.png" />
       <h1 class="h3 mb-3 font-weight-normal">Please Sign In</h1>
       <div class="alert alert-danger" role="alert" v-if="invalidCredentials">
         Invalid username and password!
@@ -36,14 +37,18 @@
       </button>
     </form>
   </div>
+</div>
 </template>
 
 <script>
+import DefaultLayout from '@/layouts/DefaultLayout';
 import auth from '../auth';
 
 export default {
-  name: 'login',
-  components: {},
+  name: 'Login',
+  components: {
+    DefaultLayout,
+  },
   data() {
     return {
       user: {
@@ -90,8 +95,10 @@ html,
 body {
   height: 100%;
 }
+
 #app {
   height: 100%;
+  background-color: #f5f5f5 !important
 }
 #login {
   height: 100%;

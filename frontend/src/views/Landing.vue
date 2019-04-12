@@ -2,10 +2,7 @@
     
     <div id="landing">
         <default-layout></default-layout>
-        <center>
-            <img src="../assets/Stockrlogo.png" id="logo" />
-        </center>
-    
+
         <div>    
             <h2 style="float: left; margin-left: 10%; width: 35%;">What IS Stockr?</h2>
             <h2 style="margin-left: 55%; margin-right: 10%;">Market News</h2>
