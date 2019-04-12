@@ -24,7 +24,7 @@
                 </div>
 
         <h2 style="margin-left: 30%; margin-right: 30%; margin-top: 40pt;">
-            <center>Hot Stocks</center>
+            <center style="margin-top: 50pt;">Hot Stocks</center>
         </h2>
 
                 <div id="marketStuff">
@@ -47,6 +47,10 @@ export default {
 </script>
 
 <style>
+
+#landing {
+    background-color: #f5f5f5;
+}
 
 #marketStuff {
     border-style: solid;
@@ -78,6 +82,7 @@ export default {
     height: auto;
     padding-bottom: 10pt;
     padding-top: 10pt;
+    margin-bottom: 10pt;
 }
 
 </style>
