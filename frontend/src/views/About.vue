@@ -17,7 +17,7 @@
             <img src="../assets/John-stockr.jpg" />
             </div>
             <div class="our-image">
-            <img src="../assets/Adam-stockr.jpg" />
+            <img src="../assets/Ben-stockr.jpg" />
             </div>
             <div class="our-image">
             <img src="../assets/Josh-stockr.jpg" />
