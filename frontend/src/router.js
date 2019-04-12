@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import ListSnippets from '@/views/ListSnippets';
-import ListSnippets from '@/views/ListPortfolio';
+// import ListSnippets from '@/views/ListPortfolio';
 import Landing from '@/views/Landing';
 import ViewSnippet from '@/views/ViewSnippet';
 import SaveSnippet from '@/views/SaveSnippet';
