@@ -2,7 +2,26 @@
   <default-layout>
     <div id="portfolio">
       <h1>Portfolio Page</h1> 
-      <p>Hello! {{user.fName}}</p>     
+      <p>Hello! {{user.fName}}</p>  
+
+            <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col">Symbol</th>
+            <th scope="col">Current Price</th>
+            <th scope="col">Total Market Value</th>
+            <th scope="col"> +/-</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="stock in portfolio" :key="stock.Id">
+            <td>{{ stock.Symbol }}</td>
+            <td>{{ stock.NumberOfShares }}</td>
+            <!-- <td class="align-middle"></td> -->
+          </tr>
+        </tbody>
+      </table>
+
     </div>
   </default-layout>
 </template>
@@ -18,14 +37,30 @@ export default {
   },
   data() {
     return{
-      user: null
+      user: null,
+      portfolio: []
     }
   },
   beforeMount(){
     this.user = auth.getUser();
 
+  },
+    created() {
+    fetch(`${process.env.VUE_APP_REMOTE_API}/api/portfolio/`, {
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' + auth.getToken(),
+      },
+      credentials: 'same-origin',
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        this.snippets = data;
+      })
+      .catch((err) => console.error(err));
   }
-
 }
 </script>
 
