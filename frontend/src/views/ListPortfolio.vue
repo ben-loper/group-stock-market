@@ -25,7 +25,7 @@
             <td><router-link
                 :to="{ name: 'trades'}"
                 tag="button"
-                class="btn btn-outline-primary btn-sm"
+                class="btn btn-outline-primary btn-sm align-middle"
                 >Buy or Sell</router-link></td>
             <!-- <td class="align-middle"></td> -->
           </tr>
@@ -77,7 +77,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 button {
   margin-right: 5px !important;
 }
