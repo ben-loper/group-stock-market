@@ -51,8 +51,8 @@ export default {
     DefaultLayout
   },
 methods: {
-      GetCurrentPrice(userPortfolio){
-      userPortfolio.forEach(stock => {
+      GetCurrentPrice(data){
+      data.forEach(stock => {
         fetch(`$https://cloud.iexapis.com/beta/stock/${stock.symbol}/price?token=pk_876eb03a33ae4de0b3b9dbf6eaa9c2bd`)
         .then((response) => {
           console.log(response.body);
@@ -69,7 +69,8 @@ methods: {
   data() {
     return{
       user: null,
-      portfolio: []
+      portfolio: [],
+      stockPrice: []
     }
   },
   beforeMount(){
@@ -89,7 +90,7 @@ methods: {
       })
       .then((data) => {
         this.portfolio = data;
-        GetCurrentPrice(this.portfolio);
+        GetCurrentPrice(data);
       })
       .catch((err) => console.error(err));
       
