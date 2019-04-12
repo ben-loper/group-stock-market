@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Stockr.DAL;
 using Stockr.Providers.Security;
+using StockrWebApi.DAL;
 
 namespace Stockr
 {
@@ -39,13 +40,13 @@ namespace Stockr
         public void ConfigureServices(IServiceCollection services)
         {
             //Configures Swagger to look at the XmlComments above our methods
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info { Title = "TeSnippets API", Version = "v1" });
-                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                c.IncludeXmlComments(xmlPath);
-            });
+            //services.AddSwaggerGen(c =>
+            //{
+            //    c.SwaggerDoc("v1", new Swashbuckle.AspNetCore.Swagger.Info { Title = "TeSnippets API", Version = "v1" });
+            //    var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+            //    var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+            //    c.IncludeXmlComments(xmlPath);
+            //});
 
             // Add CORS policy allowing any origin
             services.AddCors(options =>
@@ -77,7 +78,8 @@ namespace Stockr
             services.AddSingleton<ITokenGenerator>(tk => new JwtGenerator(Configuration["JwtSecret"]));
             services.AddSingleton<IPasswordHasher>(ph => new PasswordHasher());
             services.AddTransient<IUserDAO>(m => new UserSqlDAO(Configuration.GetConnectionString("Default")));
-            services.AddTransient<ISnippetDAO>(m => new SnippetSqlDAO(Configuration.GetConnectionString("Default")));
+            //services.AddTransient<ISnippetDAO>(m => new SnippetSqlDAO(Configuration.GetConnectionString("Default")));
+            services.AddTransient<IPortfolioDAO>(m => new PortfolioSqlDAO(Configuration.GetConnectionString("Default")));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
@@ -120,11 +122,11 @@ namespace Stockr
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), 
             // specifying the Swagger JSON endpoint.
-            app.UseSwagger();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Sample API v1");
-            });
+            //app.UseSwagger();
+            //app.UseSwaggerUI(c =>
+            //{
+            //    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Sample API v1");
+            //});
 
             app.UseCors("CorsPolicy");
 

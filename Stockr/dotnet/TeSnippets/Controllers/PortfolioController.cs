@@ -12,7 +12,7 @@ using StockrWebApi.Models;
 
 namespace StockrWebApi.Controllers
 {
-    [Route("api/portfolio")]
+    [Route("api/[controller]")]
     [ApiController]
     public class PortfolioController : Controller
     {
@@ -34,7 +34,7 @@ namespace StockrWebApi.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        //[Authorize]
         public IEnumerable<Portfolio> List()
         {
             return portfolioDao.GetPortfolio(GetCurrentUserId());

@@ -8,6 +8,7 @@
         <thead class="thead-dark">
           <tr>
             <th scope="col">Symbol</th>
+            <th scope="col">Number of Shares</th>
             <th scope="col">Current Price</th>
             <th scope="col">Total Market Value</th>
             <th scope="col"> +/-</th>
@@ -15,8 +16,8 @@
         </thead>
         <tbody>
           <tr v-for="stock in portfolio" :key="stock.Id">
-            <td>{{ stock.Symbol }}</td>
-            <td>{{ stock.NumberOfShares }}</td>
+            <td>{{ stock.symbol }}</td>
+            <td>{{ stock.numberOfShares }}</td>
             <!-- <td class="align-middle"></td> -->
           </tr>
         </tbody>
@@ -46,6 +47,8 @@ export default {
 
   },
     created() {
+      // let proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+
     fetch(`${process.env.VUE_APP_REMOTE_API}/api/portfolio/`, {
       method: 'GET',
       headers: {
@@ -57,7 +60,8 @@ export default {
         return response.json();
       })
       .then((data) => {
-        this.snippets = data;
+        this.portfolio = data;
+        console.log(this.portfolio);
       })
       .catch((err) => console.error(err));
   }
