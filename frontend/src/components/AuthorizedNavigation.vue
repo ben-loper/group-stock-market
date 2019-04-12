@@ -1,7 +1,7 @@
 <template>
   <nav class="navbar navbar-expand navbar-dark">
-    <router-link to="/landing" class="navbar-brand">
-      <img src="../assets/Stockrlogo.png" alt width="140" />
+    <router-link to="/" class="navbar-brand">
+      <img src="../assets/Stockr-logo-nav.png" alt width="140" />
       
     </router-link>
     <button

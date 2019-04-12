@@ -1,9 +1,7 @@
 <template>
     <nav class="navbar navbar-expand navbar-dark">
-    <router-link to="/landing" class="navbar-brand">
-    <figure>
-      <img src="../assets/Stockrlogo.png" alt width="140" id="stockrLogo"/>
-    </figure>
+    <router-link to="/" class="navbar-brand">
+      <img src="../assets/Stockr-logo-nav.png" alt width="140"/>
     </router-link>
     <button
       class="navbar-toggler"
@@ -18,7 +16,7 @@
     </button>
     <div class="collapse navbar-collapse" id="te-snippets-navbar">
       <ul class="navbar-nav mr-auto">
-        <router-link tag="li" class="nav-item" to="/landing" active-class="active" exact>
+        <router-link tag="li" class="nav-item" to="/" active-class="active" exact>
           <a class="nav-link">Home</a>
         </router-link>
         <router-link tag="li" class="nav-item" to="/about" active-class="active">
@@ -44,16 +42,6 @@ export default {
 
 <style scoped>
 
-figure{
-   width:130px; /*container-width*/
-   overflow:hidden; /*hide bounds of image */
-   margin:0;   /*reset margin of figure tag*/
-}
-
-#stockrLogo{
-  
-  margin:-21.875% 0;
-}
 nav {
   margin-bottom: 20px;
   background-color: #611aa6;
