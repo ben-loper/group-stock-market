@@ -1,7 +1,8 @@
 <template>
+<div>
+  <default-layout></default-layout>
   <div id="register" class="text-center">
     <form class="form-register" @submit.prevent="register">
-      <img class="logo" src="../assets/Stockrlogo.png" />
       <h1 class="h3 mb-3 font-weight-normal">Create Account</h1>
       <div class="alert alert-danger" role="alert" v-if="registrationErrors">
         There were problems registering this user.
@@ -61,11 +62,17 @@
       </button>
     </form>
   </div>
+</div>
 </template>
 
 <script>
+import DefaultLayout from '@/layouts/DefaultLayout';
+
 export default {
-  name: 'register',
+  name: 'Register',
+  components: {
+        DefaultLayout,
+  },
   data() {
     return {
       user: {
