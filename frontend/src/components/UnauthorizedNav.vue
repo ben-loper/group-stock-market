@@ -1,8 +1,7 @@
 <template>
     <nav class="navbar navbar-expand navbar-dark">
-    <router-link to="/landing" class="navbar-brand">
-      <img src="../assets/Stockrlogo.png" alt width="140" />
-      
+    <router-link to="/" class="navbar-brand">
+      <img src="../assets/Stockr-logo-nav.png" alt width="140"/>
     </router-link>
     <button
       class="navbar-toggler"
@@ -17,7 +16,7 @@
     </button>
     <div class="collapse navbar-collapse" id="te-snippets-navbar">
       <ul class="navbar-nav mr-auto">
-        <router-link tag="li" class="nav-item" to="/landing" active-class="active" exact>
+        <router-link tag="li" class="nav-item" to="/" active-class="active" exact>
           <a class="nav-link">Home</a>
         </router-link>
         <router-link tag="li" class="nav-item" to="/about" active-class="active">
@@ -41,7 +40,8 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
 nav {
   margin-bottom: 20px;
   background-color: #611aa6;
