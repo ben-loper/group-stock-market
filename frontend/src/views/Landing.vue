@@ -23,6 +23,10 @@
                     to be. Thank you for reading this message.
                 </div>
 
+        <h2 style="margin-left: 30%; margin-right: 30%; margin-top: 40pt;">
+            <center style="margin-top: 50pt;">Hot Stocks</center>
+        </h2>
+
                 <div id="marketStuff">
                     Here's where the market stuff would go. There should be like maybe a carousel of top stocks
                     rotating through right here or some such thing.
@@ -44,13 +48,16 @@ export default {
 
 <style>
 
+template {
+    background-color: #f5f5f5;
+}
+
 #marketStuff {
     border-style: solid;
     border-width: 2px;
     border-radius: 5px;
     margin-left: 30%;
     margin-right: 30%;
-    margin-top: 30pt;
 }
 
 #description {
@@ -75,6 +82,7 @@ export default {
     height: auto;
     padding-bottom: 10pt;
     padding-top: 10pt;
+    margin-bottom: 10pt;
 }
 
 </style>
