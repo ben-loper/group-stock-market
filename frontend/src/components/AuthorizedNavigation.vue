@@ -17,11 +17,11 @@
     </button>
     <div class="collapse navbar-collapse" id="te-snippets-navbar">
       <ul class="navbar-nav mr-auto">
-        <router-link tag="li" class="nav-item" to="/portfolio" active-class="active" exact>
-          <a class="nav-link">Dashboard</a>
-        </router-link>
         <router-link tag="li" class="nav-item" to="/about" active-class="active">
           <a class="nav-link">About</a>
+        </router-link>
+        <router-link tag="li" class="nav-item" to="/portfolio" active-class="active" exact>
+          <a class="nav-link">Dashboard</a>
         </router-link>
       </ul>
     </div>
