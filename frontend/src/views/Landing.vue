@@ -48,7 +48,7 @@ export default {
 
 <style>
 
-#landing {
+template {
     background-color: #f5f5f5;
 }
 
