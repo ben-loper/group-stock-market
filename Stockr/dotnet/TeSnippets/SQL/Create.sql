@@ -1,7 +1,6 @@
 ﻿USE [master]
 GO
-
-/****** Object:  Database [StockMarketDB]    Script Date: 4/11/2019 11:43:48 AM ******/
+/****** Object:  Database [StockMarketDB]    Script Date: 4/12/2019 11:05:23 AM ******/
 CREATE DATABASE [StockMarketDB]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -78,7 +77,7 @@ ALTER DATABASE [StockMarketDB] SET QUERY_STORE = OFF
 GO
 USE [StockMarketDB]
 GO
-/****** Object:  Table [dbo].[Company]    Script Date: 4/11/2019 11:43:49 AM ******/
+/****** Object:  Table [dbo].[Company]    Script Date: 4/12/2019 11:05:23 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -93,7 +92,7 @@ CREATE TABLE [dbo].[Company](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Favorites]    Script Date: 4/11/2019 11:43:49 AM ******/
+/****** Object:  Table [dbo].[Favorites]    Script Date: 4/12/2019 11:05:24 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -113,13 +112,13 @@ CREATE TABLE [dbo].[Favorites](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Portfolio]    Script Date: 4/11/2019 11:43:49 AM ******/
+/****** Object:  Table [dbo].[Portfolio]    Script Date: 4/12/2019 11:05:24 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[Portfolio](
-	[Id] [int] NOT NULL,
+	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Symbol] [varchar](50) NOT NULL,
 	[NumberOfShares] [int] NOT NULL,
 	[UserId] [int] NOT NULL,
@@ -129,7 +128,7 @@ CREATE TABLE [dbo].[Portfolio](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[Transactions]    Script Date: 4/11/2019 11:43:49 AM ******/
+/****** Object:  Table [dbo].[Transactions]    Script Date: 4/12/2019 11:05:24 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -148,7 +147,7 @@ CREATE TABLE [dbo].[Transactions](
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-/****** Object:  Table [dbo].[User]    Script Date: 4/11/2019 11:43:49 AM ******/
+/****** Object:  Table [dbo].[User]    Script Date: 4/12/2019 11:05:25 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -191,6 +190,7 @@ USE [master]
 GO
 ALTER DATABASE [StockMarketDB] SET  READ_WRITE 
 GO
+
 
 USE StockMarketDB
 Go
