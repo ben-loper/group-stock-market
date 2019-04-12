@@ -23,13 +23,11 @@
         <router-link tag="li" class="nav-item" to="/portfolio" active-class="active" exact>
           <a class="nav-link">Dashboard</a>
         </router-link>
-        <div class="search-box">
-          <form class="form-inline">
+      </ul>
+        <form class="form-inline mx-auto">
             <input class="form-control mr-sm-2" type="search" placeholder="Search for stock" aria-label="Search">
             <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
-          </form>
-        </div>
-      </ul>
+        </form>
     </div>
     <div class="navbar-collapse collapse">
       <ul class="navbar-nav ml-auto">
@@ -70,7 +68,6 @@ a.nav-link {
 .form-inline {
   text-align: center;
 }
-
 
 
 </style>
