@@ -53,6 +53,8 @@ export default {
 nav {
   margin-bottom: 20px;
   background-color: #611aa6;
+  padding-bottom: 0%;
+  padding-top: 0%;
 }
 a.navbar-brand,
 a.nav-link {
