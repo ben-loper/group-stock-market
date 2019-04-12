@@ -103,7 +103,10 @@ button {
   margin-top: 0px !important;
   padding-left: 10px;
   padding-right: 10px !important;
-  
+}
+
+th {
+  color: #bffbfb !important;
 }
 
 </style>
