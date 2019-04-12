@@ -15,8 +15,21 @@
         </thead>
         <tbody>
           <tr v-for="stock in portfolio" :key="stock.Id">
+<<<<<<< HEAD
             <td>{{ stock.Symbol }}</td>
             <td>{{ stock.NumberOfShares }}</td>
+=======
+            <td>{{ stock.symbol }}</td>
+            <td>{{ stock.numberOfShares }}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td><router-link
+                :to="{ name: 'trades'}"
+                tag="button"
+                class="btn btn-outline-primary btn-sm align-middle"
+                >Buy or Sell</router-link></td>
+>>>>>>> 8985331347cdcb9dacaaf09d765b41ed49e04723
             <!-- <td class="align-middle"></td> -->
           </tr>
         </tbody>
@@ -66,7 +79,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 button {
   margin-right: 5px !important;
 }
