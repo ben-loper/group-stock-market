@@ -45,6 +45,22 @@ export default {
   components: {
     DefaultLayout
   },
+methods: {
+      GetCurrentPrice(userPortfolio){
+      userPortfolio.forEach(stock => {
+        fetch(`$https://cloud.iexapis.com/beta/stock/${stock.symbol}/price?token=pk_876eb03a33ae4de0b3b9dbf6eaa9c2bd`)
+        .then((response) => {
+          console.log(response.body);
+          return response.text()
+          
+        })
+        .then((data) => {
+          console.log(data);
+        })
+      });
+}
+},
+
   data() {
     return{
       user: null,
@@ -73,22 +89,7 @@ export default {
       .catch((err) => console.error(err));
       
       
-  }
-  }
-
-function GetCurrentPrice(userPortfolio){
-      userPortfolio.forEach(stock => {
-        fetch(`$https://cloud.iexapis.com/beta/stock/${stock.symbol}/price?token=pk_876eb03a33ae4de0b3b9dbf6eaa9c2bd`)
-        .then((response) => {
-          console.log(response.body);
-          return response.text()
-          
-        })
-        .then((data) => {
-          console.log(data);
-        })
-      });
-}
+  }}
 </script>
 
 <style scoped>
