@@ -12,7 +12,7 @@
             <th scope="col">Current Price</th>
             <th scope="col">Total Market Value</th>
             <th scope="col"> +/-</th>
-            <th scope="col">BUY/SELL</th>
+            <th scope="col"></th>
           </tr>
         </thead>
         <tbody>
@@ -25,8 +25,13 @@
             <td><router-link
                 :to="{ name: 'trades'}"
                 tag="button"
-                class="btn btn-outline-primary btn-sm align-middle"
-                >Buy or Sell</router-link></td>
+                class="btn btn-success"
+                >Buy</router-link>
+                <router-link
+                :to="{ name: 'trades'}"
+                tag="button"
+                class="btn btn-danger"
+                >Sell</router-link></td>
             <!-- <td class="align-middle"></td> -->
           </tr>
         </tbody>
@@ -94,12 +99,10 @@ methods: {
 
 <style scoped>
 button {
-  margin-right: 5px !important;
+  margin-top: 0px !important;
+  padding-left: 10px;
+  padding-right: 10px !important;
+  
 }
-span.badge {
-  margin-right: 5px;
-}
-.actions .btn {
-  margin-top: 0px;
-}
+
 </style>
