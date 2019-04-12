@@ -1,6 +1,7 @@
 <template>
+    
     <div id="landing">
-        
+        <default-layout></default-layout>
         <center>
             <img src="../assets/Stockrlogo.png" id="logo" />
         </center>
@@ -35,8 +36,13 @@
 </template>
 
 <script>
-export default {
+import DefaultLayout from '@/layouts/DefaultLayout';
 
+export default {
+    name: 'Landing',
+    components: {
+        DefaultLayout,
+  }
 }
 </script>
 

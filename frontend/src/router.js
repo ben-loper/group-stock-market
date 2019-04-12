@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import ListSnippets from '@/views/ListSnippets';
+import ListPortfolio from '@/views/ListPortfolio';
 import Landing from '@/views/Landing';
 import ViewSnippet from '@/views/ViewSnippet';
 import SaveSnippet from '@/views/SaveSnippet';
@@ -16,7 +17,7 @@ const router = new Router({
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/landing',
+      path: '/',
       name: 'landing',
       component: Landing,
     },
@@ -24,6 +25,10 @@ const router = new Router({
       path: '/snippetsList',
       name: 'snippetList',
       component: ListSnippets,
+    },
+    { path: '/portfolio',
+      name: 'listPortfolio',
+      component: ListPortfolio,
     },
     {
       path: '/snippet/:id',
@@ -56,12 +61,12 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   // redirect to login page if not logged in and trying to access a restricted page
-  const publicPages = ['/login', '/register', '/landing', '/about'];
+  const publicPages = ['/login', '/register', '/', '/about'];
   const authRequired = !publicPages.includes(to.path);
   const loggedIn = auth.getUser();
 
   if (authRequired && !loggedIn) {
-    return next('/landing');
+    return next('/');
   }
 
   next();
