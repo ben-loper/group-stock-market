@@ -51,7 +51,13 @@ export default {
     DefaultLayout
   },
 methods: {
-      GetCurrentPrice(data){
+
+  //retrieve all info in one api call
+  //merge all data together
+  //set data on data object
+
+  //need to pass it an array of symbols to make a batch call for all symbols listed
+      GetCurrentPrice(symbol){
       data.forEach(stock => {
         fetch(`$https://cloud.iexapis.com/beta/stock/${stock.symbol}/price?token=pk_876eb03a33ae4de0b3b9dbf6eaa9c2bd`)
         .then((response) => {
@@ -69,8 +75,7 @@ methods: {
   data() {
     return{
       user: null,
-      portfolio: [],
-      stockPrice: []
+      portfolio: []
     }
   },
   beforeMount(){
@@ -90,7 +95,8 @@ methods: {
       })
       .then((data) => {
         this.portfolio = data;
-        GetCurrentPrice(data);
+        //need to loop through portfolio for each symbol
+        GetCurrentPrice(data.symbol);
       })
       .catch((err) => console.error(err));
       
