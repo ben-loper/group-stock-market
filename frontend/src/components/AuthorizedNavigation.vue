@@ -24,6 +24,10 @@
           <a class="nav-link">Dashboard</a>
         </router-link>
       </ul>
+        <form class="form-inline mx-auto">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search for stock" aria-label="Search">
+            <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+        </form>
     </div>
     <div class="navbar-collapse collapse">
       <ul class="navbar-nav ml-auto">
@@ -60,5 +64,10 @@ a.navbar-brand,
 a.nav-link {
   font-family: 'Acme', sans-serif;
 }
+
+.form-inline {
+  text-align: center;
+}
+
 
 </style>
