@@ -44,6 +44,11 @@ export default {
         DefaultLayout,
   }
 }
+
+fetch('https://cloud.iexapis.com/beta/tops?token=pk_cdd72b15fa2a4735897c36067dd39008&symbols=aapl')
+  .then((response) => {
+    return response.json();
+
 </script>
 
 <style>
