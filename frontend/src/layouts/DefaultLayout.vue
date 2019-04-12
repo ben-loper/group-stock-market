@@ -1,6 +1,7 @@
 <template>
   <div class="container-fluid">
-    <snippet-navigation></snippet-navigation>
+    <authorized-navigation v-if="isAuthorized"></authorized-navigation>
+    <unauthorized-nav v-else></unauthorized-nav>
     <div class="page-view">
       <slot />
     </div>
@@ -8,13 +9,30 @@
 </template>
 
 <script>
-import SnippetNavigation from '@/components/SnippetNavigation';
+import AuthorizedNavigation from '@/components/AuthorizedNavigation';
+import UnauthorizedNav from '@/components/UnauthorizedNav';
+import auth from '../auth';
 
 export default {
   name: 'DefaultLayout',
-  components: {
-    SnippetNavigation,
+  data() {
+    return {
+      isAuthorized: false
+    }
   },
+  components: {
+    AuthorizedNavigation,
+    UnauthorizedNav,
+    auth
+  },
+  beforeMount(){
+
+    let user = auth.getUser();
+
+    if(user != null){
+      this.isAuthorized = true;
+    }
+  }
 };
 </script>
 

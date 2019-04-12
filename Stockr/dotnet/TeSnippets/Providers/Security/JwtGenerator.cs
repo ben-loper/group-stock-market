@@ -32,7 +32,7 @@ namespace Stockr.Providers.Security
         /// <param name="username"></param>
         /// <param name="role"></param>
         /// <returns></returns>
-        public string GenerateToken(string username, string role)
+        public string GenerateToken(string username, string firstName, string role)
         {
             // Creates the sample token to send to the client.
             /*
@@ -47,6 +47,7 @@ namespace Stockr.Providers.Security
             var claims = new[]
             {
                 new Claim("sub", username),
+                new Claim("fName", firstName),
                 new Claim("rol", role),
                 new Claim("iat", DateTimeOffset.Now.ToUnixTimeSeconds().ToString(), ClaimValueTypes.Integer64)
             };

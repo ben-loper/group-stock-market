@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import ListSnippets from '@/views/ListSnippets';
-import ListSnippets from '@/views/ListPortfolio';
+import ListPortfolio from '@/views/ListPortfolio';
 import Landing from '@/views/Landing';
 import ViewSnippet from '@/views/ViewSnippet';
 import SaveSnippet from '@/views/SaveSnippet';
@@ -26,9 +26,9 @@ const router = new Router({
       name: 'snippetList',
       component: ListSnippets,
     },
-    { path: '/portfolioList',
-      name: 'portfolioList',
-      component: ListSnippets,
+    { path: '/portfolio',
+      name: 'listPortfolio',
+      component: ListPortfolio,
     },
     {
       path: '/snippet/:id',

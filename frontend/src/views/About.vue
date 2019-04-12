@@ -1,5 +1,6 @@
 <template>
     <div>
+        <default-layout></default-layout>
         <h2 style="margin-left: 5%; margin-top: 3%;">Our Story</h2>
         <div class="story-text">
         <h5>Coming from previous careers in pharmaceutical/tech sales, mutual fund accounting, QA software testing, and retail sales management, we enrolled at 
@@ -26,7 +27,14 @@
 </template>
 
 <script>
+
+import DefaultLayout from '@/layouts/DefaultLayout';
+
 export default {
+    name: 'Landing',
+    components: {
+        DefaultLayout,
+  }
 
 }
 </script>

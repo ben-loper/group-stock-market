@@ -61,7 +61,7 @@ namespace Stockr.Controllers
             userDao.CreateUser(user);
 
             // Generate a token
-            var token = tokenGenerator.GenerateToken(user.Username, user.Role);
+            var token = tokenGenerator.GenerateToken(user.Username, user.FirstName, user.Role);
 
             // Return the token
             return Ok(token);
@@ -86,7 +86,7 @@ namespace Stockr.Controllers
             if (user != null && passwordHasher.VerifyHashMatch(user.Password, model.Password, user.Salt))
             {
                 // Create an authentication token
-                var token = tokenGenerator.GenerateToken(user.Username, user.Role);
+                var token = tokenGenerator.GenerateToken(user.Username, user.FirstName, user.Role);
 
                 // Switch to 200 OK
                 result = Ok(token);
