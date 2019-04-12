@@ -52,4 +52,8 @@ a.navbar-brand,
 a.nav-link {
   font-family: 'Acme', sans-serif;
 }
+
+.navbar-dark .navbar-nav .show > .nav-link, .navbar-dark .navbar-nav .active > .nav-link, .navbar-dark .navbar-nav .nav-link.show, .navbar-dark .navbar-nav .nav-link.active {
+    color: #bffbfb !important;
+}
 </style>

@@ -15,7 +15,7 @@ export default {
 
 <style>
 #app {
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: 'Acme', sans-serif;
   margin: 0px;
   padding: 0px;
 }
