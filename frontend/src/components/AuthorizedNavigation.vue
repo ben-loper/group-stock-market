@@ -53,11 +53,12 @@ export default {
 nav {
   margin-bottom: 20px;
   background-color: #611aa6;
-  padding-bottom: 0%;
-  padding-top: 0%;
+  padding-bottom: 0% !important;
+  padding-top: 0% !important;
 }
 a.navbar-brand,
 a.nav-link {
   font-family: 'Acme', sans-serif;
 }
+
 </style>
