@@ -45,7 +45,7 @@
 import DefaultLayout from '@/layouts/DefaultLayout';
 
 export default {
-    name: 'Landing',
+    name: 'About',
     components: {
         DefaultLayout,
   }
