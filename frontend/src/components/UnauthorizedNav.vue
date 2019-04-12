@@ -1,8 +1,9 @@
 <template>
     <nav class="navbar navbar-expand navbar-dark">
     <router-link to="/landing" class="navbar-brand">
-      <img src="../assets/Stockrlogo.png" alt width="140" />
-      
+    <figure>
+      <img src="../assets/Stockrlogo.png" alt width="140" id="stockrLogo"/>
+    </figure>
     </router-link>
     <button
       class="navbar-toggler"
@@ -41,7 +42,18 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
+figure{
+   width:130px; /*container-width*/
+   overflow:hidden; /*hide bounds of image */
+   margin:0;   /*reset margin of figure tag*/
+}
+
+#stockrLogo{
+  
+  margin:-21.875% 0;
+}
 nav {
   margin-bottom: 20px;
   background-color: #611aa6;
