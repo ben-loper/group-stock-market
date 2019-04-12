@@ -34,7 +34,7 @@ namespace Stockr.DAL
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("INSERT INTO [User] VALUES (@firstName, @lastName, @username, @password, @salt, @role);", conn);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO [User] (FirstName, LastName, Username, Password, Salt, Role) VALUES (@firstName, @lastName, @username, @password, @salt, @role);", conn);
                     cmd.Parameters.AddWithValue("@username", user.Username);
                     cmd.Parameters.AddWithValue("@firstName", user.FirstName);
                     cmd.Parameters.AddWithValue("@lastName", user.LastName);
@@ -144,6 +144,7 @@ namespace Stockr.DAL
             {
                 Id = Convert.ToInt32(reader["id"]),
                 Username = Convert.ToString(reader["username"]),
+                FirstName = Convert.ToString(reader["firstname"]),
                 Password = Convert.ToString(reader["password"]),
                 Salt = Convert.ToString(reader["salt"]),
                 Role = Convert.ToString(reader["role"])

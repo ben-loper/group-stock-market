@@ -16,6 +16,6 @@ namespace Stockr.Providers.Security
         /// <param name="username">The user's username</param>
         /// <param name="role">The user's role</param>
         /// <returns></returns>
-        string GenerateToken(string username, string role);
+        string GenerateToken(string username, string firstName, string role);
     }
 }
