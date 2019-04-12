@@ -9,6 +9,7 @@ import Login from '@/views/Login';
 import Register from '@/views/Register';
 import About from '@/views/About';
 import auth from './auth';
+import Trades from '@/views/Trades';
 
 Vue.use(Router);
 
@@ -55,6 +56,11 @@ const router = new Router({
       path: '/about',
       name: 'about',
       component: About,
+    },
+    {
+      path: '/trades',
+      name: 'trades',
+      component: Trades,
     }
   ],
 });
