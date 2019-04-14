@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <transition name="fade" mode="out-in">
+      
       <router-view></router-view>
     </transition>
   </div>
@@ -10,6 +11,18 @@
 export default {
   name: 'app',
   components: {},
+    methods: {
+      // handleSearch(query) {
+      //   //console.log('Filter Tasks: ', query);
+      //   this.search = query;
+    }
+,
+data() {
+  return {
+    search: ''
+  }
+}
+
 };
 </script>
 

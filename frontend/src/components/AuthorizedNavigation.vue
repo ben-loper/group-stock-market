@@ -28,10 +28,10 @@
         </router-link>
       </ul>
         <form class="form-inline mx-auto">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search for stock" aria-label="Search">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search for stock" aria-label="Search" id='search'>
+            <router-link to="/stockdetail">
             <button class="btn btn-primary my-2 my-sm-0" type="submit">    
-              <router-link to="/stockdetail">
-              Search</router-link></button>
+              Search</button></router-link>
         </form>
     </div>
     <div class="navbar-collapse collapse">
@@ -54,10 +54,14 @@ export default {
       auth.logout();
       this.$router.go('/');
     },
+    // filterTasks() {
+    // const query = document.getElementById('search').value;
+    // this.$emit('filter-tasks', query);
+
+    //     }
   },
     data() {
     return{
-      search: ''
     }
   }
 };

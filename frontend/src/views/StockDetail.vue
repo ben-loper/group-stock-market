@@ -17,6 +17,9 @@ export default {
     components: {
         DefaultLayout
 },
+props:{
+  search: String
+},
   data() {
     return{
       user: null,
@@ -28,8 +31,8 @@ export default {
 
   },
     created(){
-        
-        fetch(`https://cloud.iexapis.com/beta/stock/aapl/company?token=pk_cdd72b15fa2a4735897c36067dd39008`)
+        //let symbol = document.getElementById('search').value;
+        fetch(`https://cloud.iexapis.com/beta/stock/${symbol}/company?token=pk_cdd72b15fa2a4735897c36067dd39008`)
         .then((response) => {
             return response.json();
         })
