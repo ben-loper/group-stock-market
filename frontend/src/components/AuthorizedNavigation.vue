@@ -29,7 +29,9 @@
       </ul>
         <form class="form-inline mx-auto">
             <input class="form-control mr-sm-2" type="search" placeholder="Search for stock" aria-label="Search">
-            <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+            <button class="btn btn-primary my-2 my-sm-0" type="submit">    
+              <router-link to="/stockdetail">
+              Search</router-link></button>
         </form>
     </div>
     <div class="navbar-collapse collapse">
@@ -53,6 +55,11 @@ export default {
       this.$router.go('/');
     },
   },
+    data() {
+    return{
+      search: ''
+    }
+  }
 };
 </script>
 

@@ -10,6 +10,7 @@ import Register from '@/views/Register';
 import About from '@/views/About';
 import auth from './auth';
 import Trades from '@/views/Trades';
+import StockDetail from '@/views/StockDetail';
 
 Vue.use(Router);
 
@@ -61,6 +62,11 @@ const router = new Router({
       path: '/trades',
       name: 'trades',
       component: Trades,
+    },
+    {
+      path: '/stockdetail',
+      name: 'stockDetail',
+      component: StockDetail,
     }
   ],
 });
