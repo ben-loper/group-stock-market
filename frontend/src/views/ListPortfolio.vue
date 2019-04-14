@@ -19,7 +19,7 @@
           <tr v-for="stock in portfolio" :key="stock.Id">
             <td>{{ stock.symbol }}</td>
             <td>{{ stock.numberOfShares }}</td>
-            <td></td>
+            <td>{{ stock.price }}</td>
             <td></td>
             <td></td>
             <td><router-link
@@ -57,18 +57,30 @@ methods: {
   //set data on data object
 
   //need to pass it an array of symbols to make a batch call for all symbols listed
-      GetCurrentPrice(symbol){
-      data.forEach(stock => {
-        fetch(`$https://cloud.iexapis.com/beta/stock/${stock.symbol}/price?token=pk_876eb03a33ae4de0b3b9dbf6eaa9c2bd`)
-        .then((response) => {
-          console.log(response.body);
-          return response.text()
+//       GetCurrentPrice(symbol){
+//       data.forEach(stock => {
+//         fetch(`$https://cloud.iexapis.com/beta/stock/${stock.symbol}/price?token=pk_876eb03a33ae4de0b3b9dbf6eaa9c2bd`)
+//         .then((response) => {
+//           console.log(response.body);
+//           return response.text()
           
-        })
-        .then((data) => {
-          console.log(data);
-        })
-      });
+//         })
+//         .then((data) => {
+//           console.log(data);
+//         })
+//       });
+// }
+// },
+
+GetCurrentPrice(stock){
+  fetch(`https://cloud.iexapis.com/beta/stock/${stock.symbol}/price?token=pk_cdd72b15fa2a4735897c36067dd39008`)
+  .then((response) => {
+    return response.text();
+  })
+  .then((resp) => {
+    stock.price = resp;
+    this.$forceUpdate();
+  });
 }
 },
 
@@ -96,7 +108,10 @@ methods: {
       .then((data) => {
         this.portfolio = data;
         //need to loop through portfolio for each symbol
-        GetCurrentPrice(data.symbol);
+        data.forEach(stock => {
+          this.GetCurrentPrice(stock);
+        })
+        // GetCurrentPrice(data.symbol);
       })
       .catch((err) => console.error(err));
       

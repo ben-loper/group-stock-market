@@ -25,9 +25,15 @@
         </h2>
 
                 <div id="marketStuff">
-                    <div id='hotStocks'>
-
-                    </div>
+                    <table class="table table-striped">
+                        <thead class="thead-dark"><tr>
+                            <th scope="col">Symbol</th>
+                            <th scope="col">Price</th></tr></thead>
+                        <tr v-for="stock in hotStocks" :key="stock.name">
+                            <td>{{stock.name}}</td>
+                            <td>{{stock.price}}</td>
+                        </tr>
+                    </table>
                 </div>
         
     </div>
@@ -40,9 +46,11 @@ export default {
     name: 'Landing',
     components: {
         DefaultLayout,
-  }
-}
-
+  },
+data() {
+    return { hotStocks : '' }
+},
+created() {
 fetch('https://cloud.iexapis.com/beta/tops?token=pk_cdd72b15fa2a4735897c36067dd39008&symbols=aapl')
 .then((resp) => {
     let dummyData = [
@@ -90,12 +98,14 @@ fetch('https://cloud.iexapis.com/beta/tops?token=pk_cdd72b15fa2a4735897c36067dd3
   }
 
 ];
-
-    document.getElementById('hotStocks').innerText = dummyData.map(stock => {
-        return stock.symbol + ' ' + stock.lastSalePrice
-    }).join('\n');
+        this.hotStocks = dummyData.map(stock => {
+        return { name: stock.symbol, price: stock.lastSalePrice };
+    });
     return resp;
 });
+
+}
+}
 
 //     document.getElementById('hotStocks').innerText = resp.map(stock => {
 //         return stock.symbol + ' ' + stock.lastSalePrice
