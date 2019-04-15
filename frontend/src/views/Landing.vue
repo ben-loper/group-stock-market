@@ -26,9 +26,12 @@
 
                 <div id="marketStuff">
                     <table class="table table-striped">
-                        <thead class="thead-dark"><tr>
-                            <th scope="col">Symbol</th>
-                            <th scope="col">Price</th></tr></thead>
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Symbol</th>
+                                <th scope="col">Price</th>
+                            </tr>
+                        </thead>
                         <tr v-for="stock in hotStocks" :key="stock.name">
                             <td>{{ stock[0].name }}</td>
                             <td>{{ stock[0].price }}</td>
@@ -144,6 +147,7 @@ html {
     border-radius: 5px;
     margin-left: 30%;
     margin-right: 30%;
+    margin-bottom: 10pt;
 }
 
 #description {
@@ -153,6 +157,7 @@ html {
     float: left;
     margin-left: 10%;
     width: 35%;
+    padding: 10px;
 }
 
 #marketNews {
@@ -161,6 +166,7 @@ html {
     border-radius: 5px;
     margin-left: 55%;
     margin-right: 10%;
+    padding: 10px;
 }
 
 #logo {
