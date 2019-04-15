@@ -133,6 +133,10 @@ th {
   color: #bffbfb !important;
 }
 
+table {
+  text-align: center;
+}
+
 h2 {
   margin-left: 0%;
 }
