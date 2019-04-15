@@ -1,8 +1,7 @@
 <template>
   <default-layout>
     <div id="portfolio">
-      <h2>Portfolio Page</h2> 
-      <p>Hello! {{user.fName}}</p>  
+      <h2>Your Portfolio</h2>  
 
             <table class="table table-striped">
         <thead class="thead-dark">
@@ -19,8 +18,8 @@
           <tr v-for="stock in portfolio" :key="stock.Id">
             <td>{{ stock.symbol }}</td>
             <td>{{ stock.numberOfShares }}</td>
-            <td>{{ stock.price }}</td>
-            <td></td>
+            <td>${{ stock.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") }}</td>
+            <td>${{CalculateMarketValue(stock.price, stock.numberOfShares).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</td>
             <td></td>
             <td><router-link
                 :to="{ name: 'trades'}"
@@ -81,6 +80,10 @@ GetCurrentPrice(stock){
     stock.price = resp;
     this.$forceUpdate();
   });
+},
+CalculateMarketValue(price, shares) {
+  let marketValue = price * shares;
+  return marketValue;
 }
 },
 

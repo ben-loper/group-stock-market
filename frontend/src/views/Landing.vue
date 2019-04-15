@@ -30,8 +30,8 @@
                             <th scope="col">Symbol</th>
                             <th scope="col">Price</th></tr></thead>
                         <tr v-for="stock in hotStocks" :key="stock.name">
-                            <td>{{stock.name}}</td>
-                            <td>{{stock.price}}</td>
+                            <td>{{ stock.name }}</td>
+                            <td>{{ stock.price }}</td>
                         </tr>
                     </table>
                 </div>
@@ -51,67 +51,79 @@ data() {
     return { hotStocks : '' }
 },
 created() {
-fetch('https://cloud.iexapis.com/beta/tops?token=pk_cdd72b15fa2a4735897c36067dd39008&symbols=aapl')
-.then((resp) => {
-    let dummyData = [
-  {
-    "symbol": "SNAP",
-    "bidSize": 200,
-    "bidPrice": 110.94,
-    "askSize": 100,
-    "askPrice": 111.82,
-    "volume": 177265,
-    "lastSalePrice": 111.76,
-    "lastSaleSize": 5,
-    "lastSaleTime": 1480446905681,
-    "lastUpdated": 1480446910557,
-    "sector": "softwareservices",
-    "securityType": "commonstock"
-  },
-  {
-    "symbol": "FB",
-    "bidSize": 200,
-    "bidPrice": 120.8,
-    "askSize": 100,
-    "askPrice": 122.5,
-    "volume": 205208,
-    "lastSalePrice": 121.41,
-    "lastSaleSize": 100,
-    "lastSaleTime": 1480446908666,
-    "lastUpdated": 1480446923942,
-    "sector": "softwareservices",
-    "securityType": "commonstock"
-  },
-  {
-    "symbol": "AIG+",
-    "bidSize": 0,
-    "bidPrice": 0,
-    "askSize": 0,
-    "askPrice": 0,
-    "volume": 3400,
-    "lastSalePrice": 21.52,
-    "lastSaleSize": 100,
-    "lastSaleTime": 1480446206461,
-    "lastUpdated": -1,
-    "sector": "insurance",
-    "securityType": "commonstock"
-  }
 
-];
-        this.hotStocks = dummyData.map(stock => {
+var topStocks = ['AAPL', 'FB', 'MSFT', 'BA', 'JPM'];
+
+topStocks.forEach(item => {
+fetch(`https://cloud.iexapis.com/beta/tops?token=pk_cdd72b15fa2a4735897c36067dd39008&symbols=${item}`)
+  .then((resp) => {
+    return resp.json();
+  })
+  .then((resp) => {
+    this.hotStocks = resp.map(stock =>{
         return { name: stock.symbol, price: stock.lastSalePrice };
     });
     return resp;
+  });
 });
-
 }
 }
 
-//     document.getElementById('hotStocks').innerText = resp.map(stock => {
-//         return stock.symbol + ' ' + stock.lastSalePrice
-//     }).join('\n');
+
+//     let dummyData = [
+//   {
+//     "symbol": "SNAP",
+//     "bidSize": 200,
+//     "bidPrice": 110.94,
+//     "askSize": 100,
+//     "askPrice": 111.82,
+//     "volume": 177265,
+//     "lastSalePrice": 111.76,
+//     "lastSaleSize": 5,
+//     "lastSaleTime": 1480446905681,
+//     "lastUpdated": 1480446910557,
+//     "sector": "softwareservices",
+//     "securityType": "commonstock"
+//   },
+//   {
+//     "symbol": "FB",
+//     "bidSize": 200,
+//     "bidPrice": 120.8,
+//     "askSize": 100,
+//     "askPrice": 122.5,
+//     "volume": 205208,
+//     "lastSalePrice": 121.41,
+//     "lastSaleSize": 100,
+//     "lastSaleTime": 1480446908666,
+//     "lastUpdated": 1480446923942,
+//     "sector": "softwareservices",
+//     "securityType": "commonstock"
+//   },
+//   {
+//     "symbol": "AIG+",
+//     "bidSize": 0,
+//     "bidPrice": 0,
+//     "askSize": 0,
+//     "askPrice": 0,
+//     "volume": 3400,
+//     "lastSalePrice": 21.52,
+//     "lastSaleSize": 100,
+//     "lastSaleTime": 1480446206461,
+//     "lastUpdated": -1,
+//     "sector": "insurance",
+//     "securityType": "commonstock"
+//   }
+
+// ];
+
+//         this.hotStocks = dummyData.map(stock => {
+//         return { name: stock.symbol, price: stock.lastSalePrice };
+//     });
 //     return resp;
 // });
+
+// }
+// }
 
 </script>
 

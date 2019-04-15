@@ -35,6 +35,7 @@
     </div>
     <div class="navbar-collapse collapse">
       <ul class="navbar-nav ml-auto">
+        <li class="nav-item" id="greeting">Hello {{user.fName}}  | </li>
         <li class="nav-item" @click="logout">
           <a class="nav-link" href="#">Logout</a>
         </li>
@@ -67,8 +68,11 @@ export default {
     //     }
   },
     data() {
-    return{
+    return{ user:null
     }
+  },
+  beforeMount() {
+    this.user = auth.getUser();
   }
 };
 </script>
@@ -91,5 +95,10 @@ a.nav-link {
 
 .form-inline {
   text-align: center;
+}
+
+#greeting {
+  color: rgba(255, 255, 255, 0.5);
+  padding-top: 5.5%;
 }
 </style>
