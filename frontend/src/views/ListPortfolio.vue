@@ -1,8 +1,7 @@
 <template>
   <default-layout>
     <div id="portfolio">
-      <h2>Portfolio Page</h2> 
-      <p>Hello! {{user.fName}}</p>  
+      <h2>Your Portfolio</h2>  
 
             <table class="table table-striped">
         <thead class="thead-dark">
