@@ -30,8 +30,8 @@
                             <th scope="col">Symbol</th>
                             <th scope="col">Price</th></tr></thead>
                         <tr v-for="stock in hotStocks" :key="stock.name">
-                            <td>{{ stock.name }}</td>
-                            <td>{{ stock.price }}</td>
+                            <td>{{ stock[0].name }}</td>
+                            <td>{{ stock[0].price }}</td>
                         </tr>
                     </table>
                 </div>
@@ -48,11 +48,14 @@ export default {
         DefaultLayout,
   },
 data() {
-    return { hotStocks : '' }
+    return{
+        hotStocks : []
+    }
 },
 created() {
 
-var topStocks = ['AAPL', 'FB', 'MSFT', 'BA', 'JPM'];
+var topStocks = ['AAPL', 'FB', 'MSFT', 'BA', 'JPM']
+let x = 0;
 
 topStocks.forEach(item => {
 fetch(`https://cloud.iexapis.com/beta/tops?token=pk_cdd72b15fa2a4735897c36067dd39008&symbols=${item}`)
@@ -60,9 +63,11 @@ fetch(`https://cloud.iexapis.com/beta/tops?token=pk_cdd72b15fa2a4735897c36067dd3
     return resp.json();
   })
   .then((resp) => {
-    this.hotStocks = resp.map(stock =>{
+    this.hotStocks[x] = resp.map(stock =>{
         return { name: stock.symbol, price: stock.lastSalePrice };
     });
+    x++;
+    this.$forceUpdate();
     return resp;
   });
 });
