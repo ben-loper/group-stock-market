@@ -57,7 +57,6 @@ fetch(`https://cloud.iexapis.com/beta/tops?token=pk_cdd72b15fa2a4735897c36067dd3
     return resp.json();
   })
   .then((resp) => {
-    alert(JSON.stringify(resp))
     this.hotStocks = resp.map(stock =>{
         return { name: stock.symbol, price: stock.lastSalePrice };
     });
