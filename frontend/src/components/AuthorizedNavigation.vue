@@ -46,7 +46,8 @@
 
 <script>
 import auth from '../auth';
-import EventBus from '../event-bus'
+import EventBus from '../event-bus';
+import {globals} from '@/main.js';
 
 export default {
   name: 'authorized-navigation',
@@ -56,10 +57,12 @@ export default {
       this.$router.go('/');
     },
     searchCompany(){
-      const query = document.getElementById('search').value;
-      EventBus.$emit('search-company', query);
-      // this.$emit('search-company', query);
-      // this.$router.go('/StockDetail');
+      globals.search = document.getElementById('search').value;
+      this.$router.push({ name: 'stockDetail'});
+      
+      // EventBus.$emit('search-company', query);
+      this.$emit('search-company');
+      //this.$router.go('/stockdetail');
     }
     // filterTasks() {
     // const query = document.getElementById('search').value;
