@@ -10,6 +10,12 @@ Vue.use(BootstrapVue);
 import 'bootstrap/dist/css/bootstrap.css';
 import 'bootstrap-vue/dist/bootstrap-vue.css';
 
+export const globals = new Vue({
+  data: {
+  search: ''
+  }
+  });
+
 Vue.config.productionTip = false;
 Vue.use(VueHighlightJS);
 

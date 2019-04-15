@@ -18,8 +18,8 @@
           <tr v-for="stock in portfolio" :key="stock.Id">
             <td>{{ stock.symbol }}</td>
             <td>{{ stock.numberOfShares }}</td>
-            <td>${{stock.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") }}</td>
-            <td>${{CalculateMarketValue(stock.price, stock.numberOfShares).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</td>
+            <td>${{parseFloat(stock.price).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",") }}</td>
+            <td>${{parseFloat(CalculateMarketValue(stock.price, stock.numberOfShares)).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</td>
             <td></td>
             <td><router-link
                 :to="{ name: 'trades'}"
@@ -84,13 +84,7 @@ GetCurrentPrice(stock){
 CalculateMarketValue(price, shares) {
   let marketValue = price * shares;
   return marketValue;
-},
-// FormatThousands(n, dp) {
-//   var s = ''+(Math.floor(n)), d = n % 1, i = s.length, r = '';
-//   while ( (i -= 3) > 0 ) { r = ',' + s.substr(i, 3) + r; }
-//   return s.substr(0, i + 3) + r + 
-//     (d ? '.' + Math.round(d * Math.pow(10, dp || 2)) : '');
-// },
+}
 },
   data() {
     return{
