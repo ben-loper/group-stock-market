@@ -18,8 +18,8 @@
           <tr v-for="stock in portfolio" :key="stock.Id">
             <td>{{ stock.symbol }}</td>
             <td>{{ stock.numberOfShares }}</td>
-            <td>{{ stock.price }}</td>
-            <td></td>
+            <td>${{ stock.price }}</td>
+            <td>${{CalculateMarketValue(stock.price, stock.numberOfShares)}}</td>
             <td></td>
             <td><router-link
                 :to="{ name: 'trades'}"
@@ -80,6 +80,10 @@ GetCurrentPrice(stock){
     stock.price = resp;
     this.$forceUpdate();
   });
+},
+CalculateMarketValue(price, shares) {
+  let marketValue = price * shares;
+  return marketValue;
 }
 },
 
