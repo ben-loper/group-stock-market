@@ -30,8 +30,8 @@
                             <th scope="col">Symbol</th>
                             <th scope="col">Price</th></tr></thead>
                         <tr v-for="stock in hotStocks" :key="stock.name">
-                            <td>{{stock.name}}</td>
-                            <td>{{stock.price}}</td>
+                            <td>{{ stock.name }}</td>
+                            <td>{{ stock.price }}</td>
                         </tr>
                     </table>
                 </div>
@@ -52,7 +52,10 @@ data() {
 },
 created() {
 
-fetch(`https://cloud.iexapis.com/beta/tops?token=pk_cdd72b15fa2a4735897c36067dd39008&symbols=aapl`)
+var topStocks = ['AAPL', 'FB', 'MSFT', 'BA', 'JPM'];
+
+topStocks.forEach(item => {
+fetch(`https://cloud.iexapis.com/beta/tops?token=pk_cdd72b15fa2a4735897c36067dd39008&symbols=${item}`)
   .then((resp) => {
     return resp.json();
   })
@@ -62,8 +65,9 @@ fetch(`https://cloud.iexapis.com/beta/tops?token=pk_cdd72b15fa2a4735897c36067dd3
     });
     return resp;
   });
+});
 }
-};
+}
 
 
 //     let dummyData = [
