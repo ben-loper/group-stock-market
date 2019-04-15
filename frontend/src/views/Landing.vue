@@ -134,7 +134,7 @@ fetch(`https://cloud.iexapis.com/beta/tops?token=pk_cdd72b15fa2a4735897c36067dd3
 
 <style>
 
-template {
+html {
     background-color: #f5f5f5;
 }
 
