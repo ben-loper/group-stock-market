@@ -8,10 +8,8 @@
     <img v-bind:src="image.url">
     <div>52-Week Range: {{stats.week52low}} - {{stats.week52high}}</div>
     <div>Shares Outstanding: {{stats.sharesOutstanding}}</div>
-    <div>Beta: {{stats.beta}}</div>
+    <div>Market Cap: {{stats.marketcap}}</div>
     <div>P/E: {{stats.peRatio}}</div>
-    <div>P/S: {{stats.priceToSales}}</div>
-    <div>P/B: {{stats.priceToBook}}</div>
 </div>
 </template>
 
@@ -62,7 +60,7 @@ props:{
         })
         .catch((err) => console.error(err));
 
-        fetch(`https://cloud.iexapis.com/beta/stock/aapl/advanced-stats?token=pk_cdd72b15fa2a4735897c36067dd39008`)
+        fetch(`https://cloud.iexapis.com/beta/stock/aapl/stats?token=pk_cdd72b15fa2a4735897c36067dd39008`)
         .then((response) => {
             return response.json();
         })
