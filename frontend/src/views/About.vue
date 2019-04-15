@@ -58,7 +58,7 @@ export default {
     display: flex;
     width: 94%;
     margin-left: 2%;
-    margin-right: 2%;
+    margin-right: 4%;
 }
 
 h2 {

@@ -1,7 +1,8 @@
 <template>
 <div>
     <default-layout></default-layout>
-    <h1>Stock Detail</h1>
+    <h2>Stock Detail</h2>
+    <div class="detail-info">
     <div>{{stockInfo.symbol}}</div>
     <div>{{stockInfo.companyName}}</div>
     <div>{{stockInfo.description}}</div>
@@ -10,6 +11,7 @@
     <div>Shares Outstanding: {{stats.sharesOutstanding}}</div>
     <div>Market Cap: {{stats.marketcap}}</div>
     <div>P/E: {{stats.peRatio}}</div>
+    </div>
 </div>
 </template>
 
@@ -93,5 +95,7 @@ export default {
 </script>
 
 <style>
-
+.detail-info {
+    margin-left: 2%;
+}
 </style>
