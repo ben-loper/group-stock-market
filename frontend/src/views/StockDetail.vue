@@ -15,66 +15,67 @@
 
 <script>
 import DefaultLayout from '@/layouts/DefaultLayout';
-import auth from '../auth';
+import EventBus from '../event-bus.js'
 
 export default {
     name: 'StockDetail',
     components: {
-        DefaultLayout
+        DefaultLayout,
+        EventBus
 },
-props:{
-  search: String
-},
-  data() {
-    return{
-      user: null,
-      stockInfo: {},
-      image: {},
-      stats: {}
-    }
+    data() {
+        return{
+            stockInfo: {},
+            image: {},
+            stats: {}
+        }
  },
-   beforeMount(){
-    this.user = auth.getUser();
+    beforeCreate(){
+        // let symbol = document.getElementById('search').value;
+        EventBus.$on('search-company', function(query) {
+            if(query != "" ){
+                fetch(`https://cloud.iexapis.com/beta/stock/${query}/company?token=pk_cdd72b15fa2a4735897c36067dd39008`)
+                .then((response) => {
+                    return response.json();
+                })
+                .then((resp) => {
+                    this.stockInfo = resp;
+                    // this.$forceUpdate();
+                
+                })
+                .catch((err) => console.error(err));
 
-  },
-    created(){
-        //let symbol = document.getElementById('search').value;
-        fetch(`https://cloud.iexapis.com/beta/stock/aapl/company?token=pk_cdd72b15fa2a4735897c36067dd39008`)
-        .then((response) => {
-            return response.json();
-        })
-        .then((resp) => {
-            this.stockInfo = resp;
-            this.$forceUpdate();
-        
-        })
-        .catch((err) => console.error(err));
+                fetch(`https://cloud.iexapis.com/beta/stock/${query}/logo?token=pk_cdd72b15fa2a4735897c36067dd39008`)
+                .then((response) => {
+                    return response.json();
+                })
+                .then((resp) => {
+                    this.image= resp;
+                    // this.$forceUpdate();
+                })
+                .catch((err) => console.error(err));
 
-        fetch(`https://cloud.iexapis.com/beta/stock/aapl/logo?token=pk_cdd72b15fa2a4735897c36067dd39008`)
-        .then((response) => {
-            return response.json();
+                fetch(`https://cloud.iexapis.com/beta/stock/${query}/stats?token=pk_cdd72b15fa2a4735897c36067dd39008`)
+                .then((response) => {
+                    return response.json();
+                })
+                .then((resp) => {
+                    this.stats= resp;
+                    // this.$forceUpdate();
+                })
+                
+                .catch((err) => console.error(err));
+                
+            }
         })
-        .then((resp) => {
-            this.image= resp;
-            this.$forceUpdate();
-        })
-        .catch((err) => console.error(err));
-
-        fetch(`https://cloud.iexapis.com/beta/stock/aapl/stats?token=pk_cdd72b15fa2a4735897c36067dd39008`)
-        .then((response) => {
-            return response.json();
-        })
-        .then((resp) => {
-            this.stats= resp;
-            this.$forceUpdate();
-        })
-        .catch((err) => console.error(err));
-        },
-
-        
+    }
+            
+    ,    
     methods:{
+       
     }
 }
+
 </script>
 
 <style>

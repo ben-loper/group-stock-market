@@ -27,12 +27,11 @@
           <a class="nav-link">Buy/Sell</a>
         </router-link>
       </ul>
-        <form class="form-inline mx-auto">
+        <!-- <form class="form-inline mx-auto"> -->
             <input class="form-control mr-sm-2" type="search" placeholder="Search for stock" aria-label="Search" id='search'>
-            <router-link to="/stockdetail">
-            <button class="btn btn-primary my-2 my-sm-0" type="submit">    
-              Search</button></router-link>
-        </form>
+            <button class="btn btn-primary my-2 my-sm-0" @click.prevent="searchCompany">    
+              Search</button>
+        <!-- </form> -->
     </div>
     <div class="navbar-collapse collapse">
       <ul class="navbar-nav ml-auto">
@@ -46,14 +45,21 @@
 
 <script>
 import auth from '../auth';
+import EventBus from '../event-bus'
 
 export default {
-  name: 'SnippetNavigation',
+  name: 'authorized-navigation',
   methods: {
     logout() {
       auth.logout();
       this.$router.go('/');
     },
+    searchCompany(){
+      const query = document.getElementById('search').value;
+      EventBus.$emit('search-company', query);
+      // this.$emit('search-company', query);
+      // this.$router.go('/StockDetail');
+    }
     // filterTasks() {
     // const query = document.getElementById('search').value;
     // this.$emit('filter-tasks', query);

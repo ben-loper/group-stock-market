@@ -25,6 +25,9 @@ export default {
     UnauthorizedNav,
     auth
   },
+  methods: {
+    
+  },
   beforeMount(){
 
     let user = auth.getUser();
