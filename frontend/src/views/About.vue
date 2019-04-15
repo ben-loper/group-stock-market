@@ -56,21 +56,21 @@ export default {
 <style>
 .story-text {
     display: flex;
-    width: 88%;
-    margin-left: 6%;
-    margin-right: 6%;
+    width: 94%;
+    margin-left: 2%;
+    margin-right: 2%;
 }
 
 h2 {
-    margin-left: 6%; 
+    margin-left: 2%; 
     margin-top: 1%;
 }
 
 .image-container {
     display: flex;
-    margin-left: 6%;
+    margin-left: 2%;
     margin-top: 3%;
-    padding-left: 2%;
+    padding-left: 3%;
     padding-right: 2%;
 }
 
@@ -94,8 +94,8 @@ h2 {
 
 .linkedin-container {
     display: flex;
-    margin-left: 6%;
-    padding-left: 2%;
+    margin-left: 2%;
+    padding-left: 3%;
     padding-right: 2%;
 }
 

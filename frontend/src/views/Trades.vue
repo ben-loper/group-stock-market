@@ -1,7 +1,7 @@
 <template>
 <div>
 <default-layout></default-layout>
-<h1>This is the page to buy/sell stocks.</h1>
+<h2>This is the page to buy/sell stocks.</h2>
 </div>
 </template>
 
@@ -18,5 +18,8 @@ export default {
 </script>
 
 <style>
+h2 {
+    margin-left: 2%;
+}
 
 </style>

@@ -1,7 +1,7 @@
 <template>
   <default-layout>
     <div id="portfolio">
-      <h1>Portfolio Page</h1> 
+      <h2>Portfolio Page</h2> 
       <p>Hello! {{user.fName}}</p>  
 
             <table class="table table-striped">
@@ -128,6 +128,10 @@ button {
 
 th {
   color: #bffbfb !important;
+}
+
+h2 {
+  margin-left: 0%;
 }
 
 </style>
