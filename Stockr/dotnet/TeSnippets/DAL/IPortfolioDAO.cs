@@ -17,5 +17,7 @@ namespace StockrWebApi.DAL
         Portfolio UpdatePortfolio(Portfolio portfolio);
 
         void Delete(int id, int userid);
+
+        List<Company> GetCompanyNames();
     }
 }
