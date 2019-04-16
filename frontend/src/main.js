@@ -13,7 +13,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 
 export const globals = new Vue({
   data: {
-  search: ''
+  symbol: ''
   }
   });
 
