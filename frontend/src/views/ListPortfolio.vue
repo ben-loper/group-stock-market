@@ -95,6 +95,7 @@ CalculateMarketValue(price, shares) {
         //need to loop through portfolio for each symbol
         data.forEach(stock => {
           this.GetCurrentPrice(stock);
+          console.log(process.env.VUE_APP_REMOTE_API);
         })
         // GetCurrentPrice(data.symbol);
       })

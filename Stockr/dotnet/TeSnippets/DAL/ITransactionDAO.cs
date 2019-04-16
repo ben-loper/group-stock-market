@@ -8,7 +8,7 @@ namespace StockrWebApi.DAL
 {
     public interface ITransactionDAO
     {
-        bool BuyStocks(Transaction transaction);
+        bool ExecuteTransaction(Transaction transaction);
 
         List<Portfolio> GetPortfolio(int userId);
     }

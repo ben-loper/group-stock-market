@@ -12,20 +12,24 @@
     <div class="detail-info">
     <img class="company-logo" v-bind:src="image.url">
     <div class="company-info">
-    <div>{{stockInfo.symbol}}</div>
-    <div>{{stockInfo.companyName}}</div>
-    <div>{{stockInfo.CEO}}</div>
-    <div>{{stockInfo.description}}</div>
-    <div>{{stockInfo.industry}}</div>
-    <div>52-Week Range: {{stats.week52low}} - {{stats.week52high}}</div>
-    <div>Shares Outstanding: {{stats.sharesOutstanding}}</div>
-    <div>Market Cap: {{stats.marketcap}}</div>
-    <div>P/E: {{stats.peRatio}}</div>
-    <div>Beta: {{stats.peRatio}}</div>
-    <span>YTD Performance: {{stats.ytdChangePercent}}</span>
-    <span>30-Day Performance: {{stats.day30ChangePercent}}</span>
-    <span>6-Month Performance: {{stats.month6ChangePercent}}</span>
-    <span>6-Month Performance: {{stats.year1ChangePercent}}</span>
+    <div class="basic-info">
+    <h5><strong> Name: </strong>{{stockInfo.companyName}}</h5>
+    <h5><strong> Symbol: </strong>{{stockInfo.symbol}}</h5>
+    <div><strong> CEO: </strong>{{stockInfo.CEO}}</div>
+    <div><strong> Description: </strong>{{stockInfo.description}}</div>
+    <div><strong> Industry: </strong>{{stockInfo.industry}}</div>
+    <div><strong> 52-Week Range: </strong>{{stats.week52low}} - {{stats.week52high}}</div>
+    </div>
+    <div class="performance-info">
+    <div><strong> Shares Outstanding: </strong>{{stats.sharesOutstanding}}</div>
+    <div><strong> Market Cap: </strong>{{stats.marketcap}}</div>
+    <div><strong> P/E: </strong>{{stats.peRatio}}</div>
+    <div><strong> Beta: </strong>{{stats.peRatio}}</div>
+    <div><strong> YTD Performance: </strong>{{stats.ytdChangePercent}}</div>
+    <div><strong> 30-Day Performance: </strong>{{stats.day30ChangePercent}}</div>
+    <div><strong> 6-Month Performance: </strong>{{stats.month6ChangePercent}}</div>
+    <div><strong> 6-Month Performance: </strong>{{stats.year1ChangePercent}}</div>
+    </div>
     </div>
     </div>
 </div>
@@ -134,11 +138,27 @@ export default {
     border: 2px solid black;
     border-radius: 5px;
     margin-right: 3%;
-    margin-top: 2.5%;
     padding: 0.5%;
 }
 
 .detail-info {
     display: flex;
+    justify-content: center;
+}
+
+.company-info {
+    display: flex;
+    width: 60%;
+}
+
+.basic-info {
+    width: 50%;
+    margin-right: 1.5%;
+    padding-left: 2%;
+}
+
+.performance-info {
+    width: 50%;
+    padding-left: 1%;
 }
 </style>

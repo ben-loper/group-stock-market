@@ -25,6 +25,15 @@ namespace StockrWebApi.Controllers
             return userDao.GetUser(base.User.Identity.Name).Id;
         }
 
+
+        public BuySellController(IUserDAO userDao, ITransactionDAO transactionDAO, IPasswordHasher passwordHasher)
+        {
+            this.userDao = userDao;
+            this.transactionDao = transactionDAO;
+            this.passwordHasher = passwordHasher;
+            
+        }
+
         /// <summary>
         /// Pulls the portfolio for the user
         /// </summary>
@@ -36,14 +45,17 @@ namespace StockrWebApi.Controllers
             return transactionDao.GetPortfolio(GetCurrentUserId());
         }
 
-        public BuySellController(IUserDAO userDao, ITransactionDAO transactionDAO, IPasswordHasher passwordHasher)
+        [HttpPost]
+        [Authorize]
+        public ActionResult<Portfolio> ExecuteTransaction(Transaction transaction)
         {
-            this.userDao = userDao;
-            this.transactionDao = transactionDAO;
-            this.passwordHasher = passwordHasher;
-            
+            transaction.UserId = GetCurrentUserId();
+
+            transactionDao.ExecuteTransaction(transaction);
+
+            return null;
         }
 
-        
+
     }
 }

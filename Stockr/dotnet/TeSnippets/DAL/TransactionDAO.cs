@@ -27,7 +27,7 @@ namespace StockrWebApi.DAL
         /// </summary>
         /// <param name="transaction"></param>
         /// <returns></returns>
-        public bool BuyStocks(Transaction transaction)
+        public bool ExecuteTransaction(Transaction transaction)
         {
             bool result = true;
             try
