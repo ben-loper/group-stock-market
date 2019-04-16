@@ -58,11 +58,19 @@ namespace StockrWebApi.DAL
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("INSERT INTO Portfolio VALUES (@symbol, @numberOfShares, @userId);", conn);
-                    cmd.Parameters.AddWithValue("@symbol", userId);
-                    cmd.ExecuteNonQuery();
+                    SqlCommand cmd = new SqlCommand("SELECT symbol, NumberOfShares FROM Transactions WHERE UserId = @userId", conn);
+                    cmd.Parameters.AddWithValue("@userId", userId);
 
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        results.Add(new Portfolio
+                        {
+                            Symbol = Convert.ToString(reader["Symbol"]),
+                            NumberOfShares = Convert.ToInt32(reader["NumberOfShares"]),
+                        });
 
+                    }
                 }
             }
             catch (SqlException ex)

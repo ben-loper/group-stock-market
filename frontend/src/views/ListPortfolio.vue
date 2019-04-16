@@ -95,7 +95,7 @@ CalculateMarketValue(price, shares) {
 
   },
     created() {
-    fetch(`${process.env.VUE_APP_REMOTE_API}/api/portfolio/`, {
+    fetch(`${process.env.VUE_APP_REMOTE_API}/api/BuySell/`, {
       method: 'GET',
       headers: {
         Authorization: 'Bearer ' + auth.getToken(),

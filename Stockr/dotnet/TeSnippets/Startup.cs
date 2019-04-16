@@ -80,6 +80,7 @@ namespace Stockr
             services.AddTransient<IUserDAO>(m => new UserSqlDAO(Configuration.GetConnectionString("Default")));
             //services.AddTransient<ISnippetDAO>(m => new SnippetSqlDAO(Configuration.GetConnectionString("Default")));
             services.AddTransient<IPortfolioDAO>(m => new PortfolioSqlDAO(Configuration.GetConnectionString("Default")));
+            services.AddTransient<ITransactionDAO>(m => new TransactionDAO(Configuration.GetConnectionString("Default")));
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
