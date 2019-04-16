@@ -55,15 +55,6 @@ export default {
             return this.GetApiData(vm);
         }
     },
-<<<<<<< HEAD
-    // beforeCreate(){
-    //     EventBus.$on('search-company', this.GetApiData);
-    // },    
-    methods:{
-        GetImage(symbol) {
-            if(globals.search != "") {
-                fetch(`https://cloud.iexapis.com/beta/stock/${globals.search}/company?token=pk_cdd72b15fa2a4735897c36067dd39008`)
-=======
       beforeMount(){
         this.user = auth.getUser();
 
@@ -88,7 +79,6 @@ export default {
         GetApiData(symbol){
             if(symbol != "") {
                 fetch(`https://cloud.iexapis.com/beta/stock/${symbol}/company?token=pk_cdd72b15fa2a4735897c36067dd39008`)
->>>>>>> 1135dd17567dba71dece45a88fce205f33cdda53
                 .then((response) => {
                     return response.json();
                 })
@@ -99,29 +89,6 @@ export default {
                 })
                 .catch((err) => console.error(err));
 
-<<<<<<< HEAD
-        //         fetch(`https://cloud.iexapis.com/beta/stock/${globals.search}/logo?token=pk_cdd72b15fa2a4735897c36067dd39008`)
-        //         .then((response) => {
-        //             return response.json();
-        //         })
-        //         .then((resp) => {
-        //             this.image= resp;
-        //             // this.$forceUpdate();
-        //         })
-        //         .catch((err) => console.error(err));
-
-        //         fetch(`https://cloud.iexapis.com/beta/stock/${globals.search}/stats?token=pk_cdd72b15fa2a4735897c36067dd39008`)
-        //         .then((response) => {
-        //             return response.json();
-        //         })
-        //         .then((resp) => {
-        //             this.stats= resp;
-        //             // this.$forceUpdate();
-        //         })            
-        //         .catch((err) => console.error(err));
-        //     }
-        // }
-=======
                 fetch(`https://cloud.iexapis.com/beta/stock/${symbol}/logo?token=pk_cdd72b15fa2a4735897c36067dd39008`)
                 .then((response) => {
                     return response.json();
@@ -143,7 +110,6 @@ export default {
                 .catch((err) => console.error(err));
             }
         }
->>>>>>> 1135dd17567dba71dece45a88fce205f33cdda53
        
     }
 }
