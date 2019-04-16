@@ -172,6 +172,8 @@ html {
     margin-left: 39%;
     margin-right: 2%;
     padding: 10px;
+    height: 350pt;
+    overflow-y: scroll;
 }
 
 #logo {
