@@ -21,7 +21,7 @@
           <a class="nav-link">About</a>
         </router-link>
         <router-link tag="li" class="nav-item" to="/portfolio" active-class="active" exact>
-          <a class="nav-link">Dashboard</a>
+          <a class="nav-link">Portfolio</a>
         </router-link>
         <router-link tag="li" class="nav-item" to="/stockdetail" active-class="active" exact>
           <a class="nav-link">Search</a>

@@ -2,7 +2,7 @@
 <div>
     <default-layout></default-layout>
     <h2>Stock Detail</h2>
-    <div style="margin-left: 100px">
+    <div class="dropdown" style="margin-left: 100px">
         <select v-model="selected">
         <option disabled value="">-- Select One --</option>
         <option v-for="name in names" :key="name.Id" v-bind:value="name.symbol">{{name.symbol}} - {{name.name}}</option>
@@ -118,5 +118,11 @@ export default {
 <style>
 .detail-info {
     margin-left: 2%;
+}
+
+.dropdown {
+    margin-left: 2% !important;
+    margin-bottom: 2%;
+    margin-top: 1%;
 }
 </style>
