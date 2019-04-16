@@ -21,11 +21,9 @@
             <td>${{parseFloat(stock.price).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",") }}</td>
             <td>${{parseFloat(CalculateMarketValue(stock.price, stock.numberOfShares)).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</td>
             <td></td>
-            <td><router-link
-                :to="{ name: 'trades'}"
-                tag="button"
-                class="btn btn-success"
-                >Buy</router-link>
+            <td><button class="btn btn-success" :value="stock.symbol" @click="SetPurchaseSymbol($event)">Buy</button>
+                
+                
                 <router-link
                 :to="{ name: 'trades'}"
                 tag="button"
@@ -43,6 +41,7 @@
 <script>
 import DefaultLayout from '@/layouts/DefaultLayout';
 import auth from '../auth';
+import {globals} from '@/main.js';
 
 export default {
   name: 'ListPortfolio',
@@ -50,26 +49,12 @@ export default {
     DefaultLayout
   },
 methods: {
-
-  //retrieve all info in one api call
-  //merge all data together
-  //set data on data object
-
-  //need to pass it an array of symbols to make a batch call for all symbols listed
-//       GetCurrentPrice(symbol){
-//       data.forEach(stock => {
-//         fetch(`$https://cloud.iexapis.com/beta/stock/${stock.symbol}/price?token=pk_876eb03a33ae4de0b3b9dbf6eaa9c2bd`)
-//         .then((response) => {
-//           console.log(response.body);
-//           return response.text()
-          
-//         })
-//         .then((data) => {
-//           console.log(data);
-//         })
-//       });
-// }
-// },
+  
+SetPurchaseSymbol(event){
+  console.log("We did it.");
+  globals.symbol = event.target.value;
+  this.$router.push({name:'trades'});
+},
 
 GetCurrentPrice(stock){
   fetch(`https://cloud.iexapis.com/beta/stock/${stock.symbol}/price?token=pk_cdd72b15fa2a4735897c36067dd39008`)
