@@ -188,5 +188,36 @@ namespace StockrWebApi.DAL
                 UserId = Convert.ToInt32(reader["UserId"]),
             };
         }
+
+        public List<Company> GetCompanyNames()
+        {
+
+            List<Company> company = new List<Company>();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM Company", conn);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        company.Add(new Company
+                        {
+                            Name = Convert.ToString(reader["Name"]),
+                            Symbol = Convert.ToString(reader["Symbol"]),
+                            Sector = Convert.ToString(reader["Sector"]),
+                        });
+                    }
+                }
+                return company;
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+
+        }
     }
 }

@@ -26,12 +26,15 @@
 
                 <div id="marketStuff">
                     <table class="table table-striped">
-                        <thead class="thead-dark"><tr>
-                            <th scope="col">Symbol</th>
-                            <th scope="col">Price</th></tr></thead>
+                        <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">Symbol</th>
+                                <th scope="col">Price</th>
+                            </tr>
+                        </thead>
                         <tr v-for="stock in hotStocks" :key="stock.name">
-                            <td>{{ stock.name }}</td>
-                            <td>{{ stock.price }}</td>
+                            <td>{{ stock[0].name }}</td>
+                            <td>{{ stock[0].price }}</td>
                         </tr>
                     </table>
                 </div>
@@ -48,11 +51,14 @@ export default {
         DefaultLayout,
   },
 data() {
-    return { hotStocks : '' }
+    return{
+        hotStocks : []
+    }
 },
 created() {
 
-var topStocks = ['AAPL', 'FB', 'MSFT', 'BA', 'JPM'];
+var topStocks = ['AAPL', 'FB', 'MSFT', 'BA', 'JPM']
+let x = 0;
 
 topStocks.forEach(item => {
 fetch(`https://cloud.iexapis.com/beta/tops?token=pk_cdd72b15fa2a4735897c36067dd39008&symbols=${item}`)
@@ -60,9 +66,11 @@ fetch(`https://cloud.iexapis.com/beta/tops?token=pk_cdd72b15fa2a4735897c36067dd3
     return resp.json();
   })
   .then((resp) => {
-    this.hotStocks = resp.map(stock =>{
+    this.hotStocks[x] = resp.map(stock =>{
         return { name: stock.symbol, price: stock.lastSalePrice };
     });
+    x++;
+    this.$forceUpdate();
     return resp;
   });
 });
@@ -129,7 +137,7 @@ fetch(`https://cloud.iexapis.com/beta/tops?token=pk_cdd72b15fa2a4735897c36067dd3
 
 <style>
 
-template {
+html {
     background-color: #f5f5f5;
 }
 
@@ -139,6 +147,7 @@ template {
     border-radius: 5px;
     margin-left: 30%;
     margin-right: 30%;
+    margin-bottom: 10pt;
 }
 
 #description {
@@ -148,6 +157,7 @@ template {
     float: left;
     margin-left: 10%;
     width: 35%;
+    padding: 10px;
 }
 
 #marketNews {
@@ -156,6 +166,7 @@ template {
     border-radius: 5px;
     margin-left: 55%;
     margin-right: 10%;
+    padding: 10px;
 }
 
 #logo {

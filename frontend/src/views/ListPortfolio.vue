@@ -134,10 +134,12 @@ th {
 
 table {
   text-align: center;
+  border: 2px solid #611aa6;
 }
 
 h2 {
   margin-left: 0%;
+  margin-bottom: 1%;
 }
 
 </style>
