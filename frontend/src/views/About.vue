@@ -68,7 +68,7 @@ h2 {
 
 .image-container {
     display: flex;
-    margin-left: 2%;
+    margin-left: 3%;
     margin-top: 3%;
     padding-left: 3%;
     padding-right: 2%;
@@ -77,7 +77,7 @@ h2 {
 .our-image>img {
     width: 75%;
     border-radius: 5%;
-    border: 3px solid #611aa6;
+    border: 2px solid black;
 }
 
 .our-image {
@@ -94,7 +94,7 @@ h2 {
 
 .linkedin-container {
     display: flex;
-    margin-left: 2%;
+    margin-left: 3%;
     padding-left: 3%;
     padding-right: 2%;
 }
