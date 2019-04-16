@@ -28,7 +28,7 @@
     <div><strong> YTD Performance: </strong>{{stats.ytdChangePercent}}</div>
     <div><strong> 30-Day Performance: </strong>{{stats.day30ChangePercent}}</div>
     <div><strong> 6-Month Performance: </strong>{{stats.month6ChangePercent}}</div>
-    <div><strong> 6-Month Performance: </strong>{{stats.year1ChangePercent}}</div>
+    <div><strong> 12-Month Performance: </strong>{{stats.year1ChangePercent}}</div>
     </div>
     </div>
     </div>
