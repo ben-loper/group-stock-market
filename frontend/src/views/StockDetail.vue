@@ -134,7 +134,6 @@ export default {
     border: 2px solid black;
     border-radius: 5px;
     margin-right: 3%;
-    margin-top: 2.5%;
     padding: 0.5%;
 }
 
