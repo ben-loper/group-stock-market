@@ -13,15 +13,15 @@
     <img class="company-logo" v-bind:src="image.url">
     <div class="company-info">
     <div class="basic-info">
-    <div><strong> Name: </strong>{{stockInfo.companyName}}</div>
-    <div><strong> Symbol: </strong>{{stockInfo.symbol}}</div>
+    <h5><strong> Name: </strong>{{stockInfo.companyName}}</h5>
+    <h5><strong> Symbol: </strong>{{stockInfo.symbol}}</h5>
     <div><strong> CEO: </strong>{{stockInfo.CEO}}</div>
     <div><strong> Description: </strong>{{stockInfo.description}}</div>
     <div><strong> Industry: </strong>{{stockInfo.industry}}</div>
     <div><strong> 52-Week Range: </strong>{{stats.week52low}} - {{stats.week52high}}</div>
-    <div><strong> Shares Outstanding: </strong>{{stats.sharesOutstanding}}</div>
     </div>
     <div class="performance-info">
+    <div><strong> Shares Outstanding: </strong>{{stats.sharesOutstanding}}</div>
     <div><strong> Market Cap: </strong>{{stats.marketcap}}</div>
     <div><strong> P/E: </strong>{{stats.peRatio}}</div>
     <div><strong> Beta: </strong>{{stats.peRatio}}</div>
@@ -148,15 +148,17 @@ export default {
 
 .company-info {
     display: flex;
+    width: 60%;
 }
 
 .basic-info {
     width: 50%;
-    margin-right: 2%;
+    margin-right: 1.5%;
     padding-left: 2%;
 }
 
 .performance-info {
     width: 50%;
+    padding-left: 1%;
 }
 </style>
