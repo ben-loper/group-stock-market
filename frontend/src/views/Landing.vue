@@ -5,7 +5,7 @@
 
         <div>    
             <h2 style="float: left; margin-left: 10%; width: 35%;">What IS Stockr?</h2>
-            <h2 style="margin-left: 55%; margin-right: 10%;">Market News</h2>
+            <h2 style="margin-left: 60%; margin-right: 10%;">Market News</h2>
         </div>
 
                 <div id="description">
@@ -164,7 +164,7 @@ html {
     border-style: solid;
     border-width: 2px;
     border-radius: 5px;
-    margin-left: 55%;
+    margin-left: 39%;
     margin-right: 2%;
     padding: 10px;
 }
