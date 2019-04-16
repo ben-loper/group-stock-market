@@ -4,8 +4,8 @@
         <default-layout></default-layout>
 
         <div>    
-            <h2 style="float: left; margin-left: 10%; width: 35%;">What IS Stockr?</h2>
-            <h2 style="margin-left: 60%; margin-right: 10%;">Market News</h2>
+            <h2 style="float: left; margin-left: 14%; width: 35%;">What IS Stockr?</h2>
+            <h2 style="margin-left: 65%; margin-right: 10%;">Market News</h2>
         </div>
 
                 <div id="description">
@@ -18,8 +18,8 @@
                     <vue-rss-feed :feedUrl="feedUrl" :name="name" :limit="limit"/>
                 </div>
 
-        <h2 style="margin-left: 30%; margin-right: 30%; margin-top: 40pt;">
-            <center style="margin-top: 50pt;">Hot Stocks</center>
+        <h2 style="margin-left: 16%;">
+            <div>Hot Stocks</div>
         </h2>
 
                 <div id="marketStuff">
@@ -54,9 +54,9 @@ export default {
 data() {
     return{
         hotStocks : [],
-        feedUrl: "https://rss.app/feeds/hmsyAr3PyniBpmOd.xml",
+        feedUrl: `https://cors-anywhere.herokuapp.com/http://rss.cnn.com/rss/money_markets.rss`,
         name: "",
-        limit: 5
+        limit: 10
     }
 },
 
@@ -150,8 +150,9 @@ html {
     border-style: solid;
     border-width: 2px;
     border-radius: 5px;
-    margin-left: 30%;
-    margin-right: 30%;
+    margin-left: 2%;
+    float: left;
+    width: 42%;
     margin-bottom: 10pt;
 }
 
@@ -161,7 +162,7 @@ html {
     border-radius: 5px;
     float: left;
     margin-left: 2%;
-    width: 35%;
+    width: 42%;
     padding: 10px;
 }
 
@@ -169,19 +170,11 @@ html {
     border-style: solid;
     border-width: 2px;
     border-radius: 5px;
-    margin-left: 39%;
+    margin-left: 46%;
     margin-right: 2%;
     padding: 10px;
     height: 350pt;
     overflow-y: scroll;
-}
-
-#logo {
-    width: 300px;
-    height: auto;
-    padding-bottom: 10pt;
-    padding-top: 10pt;
-    margin-bottom: 10pt;
 }
 
 </style>
