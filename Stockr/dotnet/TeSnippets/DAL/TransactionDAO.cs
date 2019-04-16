@@ -53,6 +53,22 @@ namespace StockrWebApi.DAL
         {
             List<Portfolio> results = new List<Portfolio>();
 
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("INSERT INTO Portfolio VALUES (@symbol, @numberOfShares, @userId);", conn);
+                    cmd.Parameters.AddWithValue("@symbol", userId);
+                    cmd.ExecuteNonQuery();
+
+
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
 
             return results;
         }
