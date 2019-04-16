@@ -47,13 +47,18 @@ namespace StockrWebApi.Controllers
 
         [HttpPost]
         [Authorize]
-        public ActionResult<Portfolio> ExecuteTransaction(Transaction transaction)
+        public ActionResult<HttpResponse> ExecuteTransaction(Transaction transaction)
         {
             transaction.UserId = GetCurrentUserId();
 
-            transactionDao.ExecuteTransaction(transaction);
+            bool isSuccessful = transactionDao.ExecuteTransaction(transaction);
 
-            return null;
+            if (isSuccessful)
+            {
+                return new OkResult();
+            }
+
+            return new BadRequestResult();
         }
 
 
