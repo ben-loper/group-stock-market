@@ -10,12 +10,13 @@
     </div>
 
     <div class="detail-info">
+    <img class="company-logo" v-bind:src="image.url">
+    <div class="company-info">
     <div>{{stockInfo.symbol}}</div>
     <div>{{stockInfo.companyName}}</div>
     <div>{{stockInfo.CEO}}</div>
     <div>{{stockInfo.description}}</div>
     <div>{{stockInfo.industry}}</div>
-    <img v-bind:src="image.url">
     <div>52-Week Range: {{stats.week52low}} - {{stats.week52high}}</div>
     <div>Shares Outstanding: {{stats.sharesOutstanding}}</div>
     <div>Market Cap: {{stats.marketcap}}</div>
@@ -25,6 +26,7 @@
     <span>30-Day Performance: {{stats.day30ChangePercent}}</span>
     <span>6-Month Performance: {{stats.month6ChangePercent}}</span>
     <span>6-Month Performance: {{stats.year1ChangePercent}}</span>
+    </div>
     </div>
 </div>
 </template>
@@ -124,5 +126,19 @@ export default {
     margin-left: 2% !important;
     margin-bottom: 2%;
     margin-top: 1%;
+}
+
+.company-logo {
+    width: 15%;
+    height: 75%;
+    border: 2px solid black;
+    border-radius: 5px;
+    margin-right: 3%;
+    margin-top: 2.5%;
+    padding: 0.5%;
+}
+
+.detail-info {
+    display: flex;
 }
 </style>
