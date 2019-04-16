@@ -125,9 +125,9 @@ namespace StockrWebApi.DAL
         }
 
         /// <summary>
-        /// I will update an exsiting snippet
+        /// I will update an exsiting portfolio
         /// </summary>
-        /// <param name="snippet"></param>
+        /// <param name="portfolio"></param>
         public Portfolio UpdatePortfolio(Portfolio portfolio)
         {
             try
@@ -156,6 +156,7 @@ namespace StockrWebApi.DAL
         /// I will delete a snippet by it's id.
         /// </summary>
         /// <param name="id"></param>
+        /// <param name="userid"></param>
         public void Delete(int id, int userid)
         {
             try

@@ -33,8 +33,10 @@ namespace StockrWebApi.Controllers
             this.passwordHasher = passwordHasher;
         }
 
+        
         [HttpGet]
         [Authorize]
+        //api/portfolio
         public IEnumerable<Portfolio> List()
         {
             return portfolioDao.GetPortfolio(GetCurrentUserId());
