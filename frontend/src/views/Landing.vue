@@ -15,9 +15,7 @@
                 </div>
             
                 <div id="marketNews">
-                    Here is the space where market news type stuff will go! I've filled out this space
-                    with additional words and stuff just so it'll kind of be the size that we want it
-                    to be. Thank you for reading this message.
+                    <vue-rss-feed :feedUrl="feedUrl" :name="name" :limit="limit"/>
                 </div>
 
         <h2 style="margin-left: 30%; margin-right: 30%; margin-top: 40pt;">
@@ -44,17 +42,24 @@
 
 <script>
 import DefaultLayout from '@/layouts/DefaultLayout';
+import VueRssFeed from "vue-rss-feed";
 
 export default {
     name: 'Landing',
     components: {
         DefaultLayout,
+        VueRssFeed,
   },
+
 data() {
     return{
-        hotStocks : []
+        hotStocks : [],
+        feedUrl: "https://rss.app/feeds/hmsyAr3PyniBpmOd.xml",
+        name: "",
+        limit: 5
     }
 },
+
 created() {
 
 var topStocks = ['AAPL', 'FB', 'MSFT', 'BA', 'JPM']
@@ -167,6 +172,8 @@ html {
     margin-left: 39%;
     margin-right: 2%;
     padding: 10px;
+    height: 350pt;
+    overflow-y: scroll;
 }
 
 #logo {
