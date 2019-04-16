@@ -155,7 +155,7 @@ html {
     border-width: 2px;
     border-radius: 5px;
     float: left;
-    margin-left: 10%;
+    margin-left: 2%;
     width: 35%;
     padding: 10px;
 }
@@ -165,7 +165,7 @@ html {
     border-width: 2px;
     border-radius: 5px;
     margin-left: 55%;
-    margin-right: 10%;
+    margin-right: 2%;
     padding: 10px;
 }
 
