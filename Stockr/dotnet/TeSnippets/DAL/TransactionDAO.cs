@@ -35,7 +35,7 @@ namespace StockrWebApi.DAL
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("INSERT INTO Portfolio VALUES (@symbol, @numberOfShares, @userId);", conn);
+                    SqlCommand cmd = new SqlCommand("INSERT INTO Transactions(Symbol, NumberOfShares, Price, Date, UserId) VALUES (@symbol, @numberOfShares, @price, @date, @userId);", conn);
                     cmd.Parameters.AddWithValue("@symbol", transaction.Symbol);                    
                     cmd.ExecuteNonQuery();
 
@@ -58,7 +58,7 @@ namespace StockrWebApi.DAL
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand("SELECT symbol, NumberOfShares FROM Transactions WHERE UserId = @userId", conn);
+                    SqlCommand cmd = new SqlCommand("SELECT symbol, SUM(NumberOfShares) AS totalNumberOfShares FROM Transactions WHERE UserId = @userId GROUP BY Symbol HAVING SUM(NumberOfShares) > 0", conn);
                     cmd.Parameters.AddWithValue("@userId", userId);
 
                     SqlDataReader reader = cmd.ExecuteReader();
@@ -67,7 +67,7 @@ namespace StockrWebApi.DAL
                         results.Add(new Portfolio
                         {
                             Symbol = Convert.ToString(reader["Symbol"]),
-                            NumberOfShares = Convert.ToInt32(reader["NumberOfShares"]),
+                            NumberOfShares = Convert.ToInt32(reader["totalNumberOfShares"]),
                         });
 
                     }
