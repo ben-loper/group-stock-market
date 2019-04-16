@@ -1,10 +1,9 @@
 <template>
   <default-layout>
-    <div id="portfolio">
       <h2>Your Portfolio</h2>  
-
-            <table class="table table-striped">
-        <thead class="thead-dark">
+        <div id="portfolio-table">
+          <table class="table table-striped">
+          <thead class="thead-dark">
           <tr>
             <th scope="col">Symbol</th>
             <th scope="col">Number of Shares</th>
@@ -33,8 +32,7 @@
           </tr>
         </tbody>
       </table>
-
-    </div>
+        </div>
   </default-layout>
 </template>
 
@@ -121,8 +119,18 @@ table {
   text-align: center;
 }
 
+.table > tbody > tr > td {
+  vertical-align: middle;
+}
+
+#portfolio-table {
+    border: 2px solid black;
+    border-radius: 5px !important;
+}
+
 h2 {
   margin-left: 0%;
+  margin-bottom: 1%;
 }
 
 </style>
