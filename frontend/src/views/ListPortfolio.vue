@@ -1,6 +1,6 @@
 <template>
   <default-layout>
-      <h2>Your Portfolio</h2>  
+      <h2 class="portfolio-h2">Your Portfolio</h2>  
         <div id="portfolio-table">
           <table class="table table-striped">
           <thead class="thead-dark">
@@ -136,7 +136,7 @@ table {
     border-radius: 5px !important;
 }
 
-h2 {
+.portfolio-h2 {
   margin-left: 0%;
   margin-bottom: 1%;
 }

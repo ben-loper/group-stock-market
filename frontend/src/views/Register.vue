@@ -117,10 +117,10 @@ body {
 }
 #app {
   height: 100%;
-  background-image: url("../assets/wallstreet-bull.jpg");
+  /* background-image: url("../assets/wallstreet-bull.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: 5%;
+  background-position: 5%; */
 }
 #register {
   height: 100%;
