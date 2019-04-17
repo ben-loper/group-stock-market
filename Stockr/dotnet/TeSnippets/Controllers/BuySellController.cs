@@ -45,6 +45,24 @@ namespace StockrWebApi.Controllers
             return transactionDao.GetPortfolio(GetCurrentUserId());
         }
 
+        /// <summary>
+        /// Pulls the portfolio for the user
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Authorize]
+        [Route("AllTransactions")]
+        public IEnumerable<PastTransaction> Transactions()
+        {
+            List<PastTransaction> pastTransactions = new List<PastTransaction>();
+
+            transactionDao.GetPastTransactions(GetCurrentUserId());
+
+
+            return pastTransactions;
+            //return transactionDao.GetPortfolio(GetCurrentUserId());
+        }
+
         [HttpPost]
         [Authorize]
         public ActionResult<HttpResponse> ExecuteTransaction(Transaction transaction)

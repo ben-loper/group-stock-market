@@ -84,5 +84,42 @@ namespace StockrWebApi.DAL
 
             return results;
         }
+
+        List<PastTransaction> GetPastTransactions(int userId)
+        {
+            List<PastTransaction> results = new List<PastTransaction>();
+
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("SELECT * FROM Transactions WHERE UserId = @userId ORDER BY Date DESC", conn);
+                    cmd.Parameters.AddWithValue("@userId", userId);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        results.Add(new PastTransaction
+                        {
+                            ID = Convert.ToInt32(reader["Id"]),
+                            Symbol = Convert.ToString(reader["Symbol"]),
+                            NumOfShares = Convert.ToInt32(reader["NumberOfShares"]),
+                            Price = Convert.ToDecimal(reader["price"]),
+                            Date = Convert.ToDateTime(reader["Date"]),
+                            UserId = Convert.ToInt32(reader["UserId"])
+                        });
+
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw ex;
+            }
+
+            return results;
+        }
     }
 }
