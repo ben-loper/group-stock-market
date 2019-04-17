@@ -24,7 +24,8 @@
     <div><strong> Market Cap: </strong>{{stats.marketcap}}</div>
     <div><strong> P/E: </strong>{{stats.peRatio}}</div>
     <div><strong> Beta: </strong>{{(stats.beta.toFixed(2))}}</div>
-    <div><strong> YTD Performance: </strong>{{((parseFloat(this.stats.ytdChangePercent)*100).toFixed(2))}}%</div>
+    <div><strong> YTD Performance: </strong>
+    <span v-bind:class="{'good': ((parseFloat(this.stats.ytdChangePercent)*100).toFixed(2)) > 0}">{{((parseFloat(this.stats.ytdChangePercent)*100).toFixed(2))}}%</span></div>
     <div><strong> 30-Day Performance: </strong>{{((parseFloat(this.stats.day30ChangePercent)*100).toFixed(2))}}%</div>
     <div><strong> 6-Month Performance: </strong>{{((parseFloat(this.stats.month6ChangePercent)*100).toFixed(2))}}%</div>
     <div><strong> 12-Month Performance: </strong>{{((parseFloat(this.stats.year1ChangePercent)*100).toFixed(2))}}%</div>
@@ -139,6 +140,10 @@ export default {
 </script>
 
 <style>
+.good{
+    color: green;
+}
+
 .detail-info {
     margin-left: 2%;
 }
