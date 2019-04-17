@@ -7,20 +7,21 @@
             <h2 style="float: left; margin-left: 14%; width: 35%;">What IS Stockr?</h2>
             <h2 style="margin-left: 65%; margin-right: 10%;">Market News</h2>
         </div>
-
+            <div id="leftColumn">
                 <div id="description">
                     Stockr is the world's greatest stock purchasing/tracking application.
                     You can manage your portfolio, buy and sell stocks, follow favorites, and more!
                     Over three people worldwide are getting things done with Stockr. What will YOU do?
                 </div>
+            </div>
             
                 <div id="marketNews">
                     <vue-rss-feed :feedUrl="feedUrl" :name="name" :limit="limit"/>
                 </div>
 
-        <h2 style="margin-left: 16%;">
-            <div>Hot Stocks</div>
-        </h2>
+                <h2 style="margin-left: 16%;">
+                    <div style="position: relative; top: -355px;">Hot Stocks</div>
+                </h2>
 
                 <div id="marketStuff">
                     <table class="table table-striped">
@@ -154,6 +155,8 @@ html {
     float: left;
     width: 42%;
     margin-bottom: 10pt;
+    position: relative;
+    top: -355px;
 }
 
 #description {
