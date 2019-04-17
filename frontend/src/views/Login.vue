@@ -98,18 +98,26 @@ body {
 
 #app {
   height: 100%;
-  background-color: #f5f5f5 !important
+  background-color: #f5f5f5 !important;
+  background-image: url("../assets/wallstreet-bull.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 5%;
 }
 #login {
   height: 100%;
+  width: 27%;
+  margin-left: 37%;
+  margin-top: 9%;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
   align-items: center;
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding-top: 7px;
+  padding-bottom: 10px;
   background-color: #f5f5f5;
   font-family: 'Roboto Condensed', sans-serif;
+  border-radius: 5px;
 }
 
 form {
