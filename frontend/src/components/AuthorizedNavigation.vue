@@ -24,10 +24,13 @@
           <a class="nav-link">Portfolio</a>
         </router-link>
         <router-link tag="li" class="nav-item" to="/stockdetail" active-class="active" exact>
-          <a class="nav-link">Search</a>
+          <a class="nav-link">Research</a>
         </router-link>  
         <router-link tag="li" class="nav-item" to="/trades" active-class="active" exact>
           <a class="nav-link">Buy/Sell</a>
+        </router-link>
+          <router-link tag="li" class="nav-item" to="/history" active-class="active" exact>
+          <a class="nav-link">History</a>
         </router-link>
       </ul>
     </div>

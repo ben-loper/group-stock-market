@@ -11,5 +11,7 @@ namespace StockrWebApi.DAL
         bool ExecuteTransaction(Transaction transaction);
 
         List<Portfolio> GetPortfolio(int userId);
+
+        List<PastTransaction> GetPastTransactions(int userId);
     }
 }

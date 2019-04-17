@@ -11,6 +11,7 @@ import About from '@/views/About';
 import auth from './auth';
 import Trades from '@/views/Trades';
 import StockDetail from '@/views/StockDetail';
+import History from '@/views/History';
 
 Vue.use(Router);
 
@@ -67,6 +68,11 @@ const router = new Router({
       path: '/stockdetail',
       name: 'stockDetail',
       component: StockDetail,
+    },
+    {
+      path: '/history',
+      name: 'history',
+      component: History,
     }
   ],
 });

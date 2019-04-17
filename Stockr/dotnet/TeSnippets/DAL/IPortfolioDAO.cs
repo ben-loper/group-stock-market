@@ -19,5 +19,7 @@ namespace StockrWebApi.DAL
         void Delete(int id, int userid);
 
         List<Company> GetCompanyNames();
+
+        List<PastTransaction> GetPastTransactions(int userId);
     }
 }
