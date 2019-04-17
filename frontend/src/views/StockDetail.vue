@@ -9,7 +9,7 @@
         </select>
     </div>
 
-    <div class="detail-info">
+    <div v-if="stockInfo.companyName != null" class="detail-info">
     <img class="company-logo" v-bind:src="image.url">
     <div class="company-info">
     <div class="basic-info">
