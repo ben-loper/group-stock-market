@@ -10,7 +10,6 @@
     </div>
 
     <div v-if="stockInfo.companyName != null" class="detail-info">
-    <button class="btn btn-success" :value="stockInfo.symbol" @click="BuyShares($event)">Buy</button>
     <img class="company-logo" v-bind:src="image.url">
     <div class="company-info">
     <div class="basic-info">
@@ -33,6 +32,8 @@
     </div>
     </div>
     </div>
+    <h5 v-if="stockInfo.companyName != null" class="current-price">Current Price: ${{price}}</h5>
+    <button v-if="stockInfo.companyName != null" class="btn btn-success" :value="stockInfo.symbol" @click="BuyShares($event)">Buy</button>   
 </div>
 </template>
 
@@ -54,7 +55,8 @@ export default {
             stats: {},
             names: [],
             user: null,
-            selected: ""
+            selected: "",
+            price: {}
         }
     },
     watch: {
@@ -95,6 +97,14 @@ export default {
                 
                 })
                 .catch((err) => console.error(err));
+
+                fetch(`https://cloud.iexapis.com/beta/stock/${symbol}/price?token=pk_cdd72b15fa2a4735897c36067dd39008`)
+                .then((response) => {
+                    return response.text();
+                })
+                .then((resp) => {
+                    this.price = resp;
+                });
 
                 fetch(`https://cloud.iexapis.com/beta/stock/${symbol}/logo?token=pk_cdd72b15fa2a4735897c36067dd39008`)
                 .then((response) => {
@@ -167,5 +177,16 @@ export default {
 .performance-info {
     width: 50%;
     padding-left: 1%;
+}
+
+button {
+    background-color: #611aa6 !important;
+    border: 1px solid #611aa6 !important;
+    margin-left: 15.5% !important;
+    width: 9%;
+}
+
+.current-price {
+    margin-left: 13.6%;
 }
 </style>
