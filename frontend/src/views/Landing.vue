@@ -1,11 +1,11 @@
-<template>
+<template class="landing-template">
     
     <div id="landing">
         <default-layout></default-layout>
 
         <div>    
-            <h2 style="float: left; margin-left: 15%;">What IS Stockr?</h2>
-            <h2 style="margin-left: 64%; margin-right: 21%;">Market News</h2>
+            <h2 class="landing-h2" style="float: left; margin-left: 15%;">What IS Stockr?</h2>
+            <h2 class="landing-h2" style="margin-left: 64%; margin-right: 21%;">Market News</h2>
         </div>
             <div id="leftColumn">
                 <div id="description">
@@ -19,7 +19,7 @@
                     <vue-rss-feed :feedUrl="feedUrl" :name="name" :limit="limit"/>
                 </div>
 
-                <h2 style="margin-left: 17%; margin-right: 70%; position: relative; top: -355px;">
+                <h2 class="landing-h2" style="margin-left: 17%; margin-right: 70%; position: relative; top: -355px;">
                     Hot Stocks
                 </h2>
 
@@ -145,10 +145,10 @@ fetch(`https://cloud.iexapis.com/beta/tops?token=pk_cdd72b15fa2a4735897c36067dd3
 
 html {
     background-color: #f5f5f5;
-    background-image: url("../assets/wallstreet-bull.jpg");
+    /* background-image: url("../assets/wallstreet-bull.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    background-position: 5%;
+    background-position: 5%; */
 }
 
 #marketStuff {
@@ -187,7 +187,7 @@ html {
     background-color: #f5f5f5;
 }
 
-h2 {
+.landing-h2 {
     background-color: #f5f5f5;
     padding: 0.5%;
     border: 2px solid black;
@@ -195,7 +195,7 @@ h2 {
     text-align: center;
 }
 
-h2>div {
+.landing-h2>div {
     background-color: #f5f5f5;
     padding: 0.5%;
     border: 2px solid black;

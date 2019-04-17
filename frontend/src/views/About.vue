@@ -1,7 +1,7 @@
 <template>
     <div>
         <default-layout></default-layout>
-        <h2>Our Story</h2>
+        <h2 class="about-h2">Our Story</h2>
         <div class="story-text">
         <h5>Coming from previous careers in pharmaceutical/tech sales, mutual fund accounting, QA software testing, and retail sales management, we enrolled at 
             Tech Elevator with the hopes of forging new paths as software developers. Over the past 14 weeks, we've learned a tremendous amount of technical skills and 
@@ -61,7 +61,7 @@ export default {
     margin-right: 4%;
 }
 
-h2 {
+.about-h2 {
     margin-left: 2%; 
     margin-top: 1%;
 }
