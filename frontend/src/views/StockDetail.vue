@@ -10,6 +10,7 @@
     </div>
 
     <div v-if="stockInfo.companyName != null" class="detail-info">
+    <button class="btn btn-success" :value="stockInfo.symbol" @click="BuyShares($event)">Buy</button>
     <img class="company-logo" v-bind:src="image.url">
     <div class="company-info">
     <div class="basic-info">
@@ -115,7 +116,13 @@ export default {
                 })            
                 .catch((err) => console.error(err));
             }
-        }
+        },
+        BuyShares(event){
+            console.log("We did it.");
+            globals.symbol = event.target.value;
+            globals.isBuy = true;
+            this.$router.push({name:'trades'});
+}
        
     }
 }
