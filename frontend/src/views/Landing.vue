@@ -4,8 +4,8 @@
         <default-layout></default-layout>
 
         <div>    
-            <h2 style="float: left; margin-left: 14%; width: 35%;">What IS Stockr?</h2>
-            <h2 style="margin-left: 65%; margin-right: 10%;">Market News</h2>
+            <h2 style="float: left; margin-left: 15%;">What IS Stockr?</h2>
+            <h2 style="margin-left: 64%; margin-right: 21%;">Market News</h2>
         </div>
             <div id="leftColumn">
                 <div id="description">
@@ -19,8 +19,8 @@
                     <vue-rss-feed :feedUrl="feedUrl" :name="name" :limit="limit"/>
                 </div>
 
-                <h2 style="margin-left: 16%;">
-                    <div style="position: relative; top: -355px;">Hot Stocks</div>
+                <h2 style="margin-left: 17%; margin-right: 70%; position: relative; top: -355px;">
+                    Hot Stocks
                 </h2>
 
                 <div id="marketStuff">
@@ -145,6 +145,10 @@ fetch(`https://cloud.iexapis.com/beta/tops?token=pk_cdd72b15fa2a4735897c36067dd3
 
 html {
     background-color: #f5f5f5;
+    background-image: url("../assets/wallstreet-bull.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 5%;
 }
 
 #marketStuff {
@@ -157,6 +161,7 @@ html {
     margin-bottom: 10pt;
     position: relative;
     top: -355px;
+    background-color: #f5f5f5;
 }
 
 #description {
@@ -167,6 +172,7 @@ html {
     margin-left: 2%;
     width: 42%;
     padding: 10px;
+    background-color: #f5f5f5;
 }
 
 #marketNews {
@@ -178,6 +184,21 @@ html {
     padding: 10px;
     height: 350pt;
     overflow-y: scroll;
+    background-color: #f5f5f5;
 }
 
+h2 {
+    background-color: #f5f5f5;
+    padding: 0.5%;
+    border: 2px solid black;
+    border-radius: 5px;
+    text-align: center;
+}
+
+h2>div {
+    background-color: #f5f5f5;
+    padding: 0.5%;
+    border: 2px solid black;
+    border-radius: 5px;
+}
 </style>
