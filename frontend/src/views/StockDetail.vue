@@ -13,27 +13,26 @@
     <img class="company-logo" v-bind:src="image.url">
     <div class="company-info">
     <div class="basic-info">
-    <h5><strong> Name: </strong>{{stockInfo.companyName}}</h5>
-    <h5><strong> Symbol: </strong>{{stockInfo.symbol}}</h5>
+    <h5><strong>{{stockInfo.companyName}} | {{stockInfo.symbol}}</strong></h5>
     <div><strong> CEO: </strong>{{stockInfo.CEO}}</div>
     <div><strong> Description: </strong>{{stockInfo.description}}</div>
     <div><strong> Industry: </strong>{{stockInfo.industry}}</div>
-    <div><strong> 52-Week Range: </strong>{{stats.week52low}} - {{stats.week52high}}</div>
+    <div><strong> 52-Week Range: </strong>${{stats.week52low}} -{{stats.week52high}}</div>
     </div>
     <div class="performance-info">
     <div><strong> Shares Outstanding: </strong>{{stats.sharesOutstanding}}</div>
     <div><strong> Market Cap: </strong>{{stats.marketcap}}</div>
     <div><strong> P/E: </strong>{{stats.peRatio}}</div>
-    <div><strong> Beta: </strong>{{stats.peRatio}}</div>
-    <div><strong> YTD Performance: </strong>{{stats.ytdChangePercent}}</div>
-    <div><strong> 30-Day Performance: </strong>{{stats.day30ChangePercent}}</div>
-    <div><strong> 6-Month Performance: </strong>{{stats.month6ChangePercent}}</div>
-    <div><strong> 12-Month Performance: </strong>{{stats.year1ChangePercent}}</div>
+    <div><strong> Beta: </strong>{{(stats.beta.toFixed(2))}}</div>
+    <div><strong> YTD Performance: </strong>{{((parseFloat(this.stats.ytdChangePercent)*100).toFixed(2))}}%</div>
+    <div><strong> 30-Day Performance: </strong>{{((parseFloat(this.stats.day30ChangePercent)*100).toFixed(2))}}%</div>
+    <div><strong> 6-Month Performance: </strong>{{((parseFloat(this.stats.month6ChangePercent)*100).toFixed(2))}}%</div>
+    <div><strong> 12-Month Performance: </strong>{{((parseFloat(this.stats.year1ChangePercent)*100).toFixed(2))}}%</div>
     </div>
     </div>
     </div>
     <h5 v-if="stockInfo.companyName != null" class="current-price">Current Price: ${{price}}</h5>
-    <button v-if="stockInfo.companyName != null" class="btn btn-success" :value="stockInfo.symbol" @click="BuyShares($event)">Buy</button>   
+    <button v-if="stockInfo.companyName != null" class="btn" id="button" :value="stockInfo.symbol" @click="BuyShares($event)">Buy</button>   
 </div>
 </template>
 
@@ -56,7 +55,8 @@ export default {
             names: [],
             user: null,
             selected: "",
-            price: {}
+            price: {},
+            returnYTD: 0
         }
     },
     watch: {
@@ -179,9 +179,10 @@ export default {
     padding-left: 1%;
 }
 
-button {
+#button {
     background-color: #611aa6 !important;
     border: 1px solid #611aa6 !important;
+    color: white;
     margin-left: 15.5% !important;
     width: 9%;
 }
