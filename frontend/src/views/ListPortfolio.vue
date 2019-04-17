@@ -36,6 +36,7 @@
 import DefaultLayout from '@/layouts/DefaultLayout';
 import auth from '../auth';
 import {globals} from '@/main.js';
+import { constants } from 'crypto';
 
 export default {
   name: 'ListPortfolio',
@@ -47,11 +48,14 @@ methods: {
 BuyShares(event){
   console.log("We did it.");
   globals.symbol = event.target.value;
+  
+  console.log(event.target.numOfShares);
   globals.isBuy = true;
   this.$router.push({name:'trades'});
 },
 SellShares(event){
   console.log("We did it.");
+  globals.numberOfShares = event.path[2].childNodes[1].innerText;
   globals.symbol = event.target.value;
   globals.isBuy = false;
   this.$router.push({name:'trades'});

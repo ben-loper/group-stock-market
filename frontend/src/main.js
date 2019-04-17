@@ -13,8 +13,9 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 
 export const globals = new Vue({
   data: {
-  symbol: '',
-  isBuy: true
+    numberOfShares: 0,
+    symbol: '',
+    isBuy: true
   }
   });
 

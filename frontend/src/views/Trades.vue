@@ -14,8 +14,9 @@
   <span>Symbol: {{symbol}}</span>
   <span>Current Price: {{price}}</span>
   <!-- <input type="number" min="0.01" step="0.01" placeholder="23.50"/> -->
+  <p>Current number of shares: {{numberOfShares}}</p>
   <span>Number of Shares:</span>
-  <input type="number" placeholder="500" max="" min="0" id="numberOfShares">
+  <input type="number" placeholder="500" :max="numberOfShares" min="0" id="numberOfShares">
   <button class="btn btn-primary" @click.prevent="SellStocks">Sell Stock</button>
 </form>
 </div>
@@ -41,6 +42,8 @@ created(){
         this.trade.price = parseFloat(resp);
         this.$forceUpdate();
     });
+
+    
     },
     
 
@@ -66,6 +69,7 @@ methods: {
       
   },
   SellStocks(){
+    if(parseInt(document.getElementById('numberOfShares').value) <= globals.numberOfShares && parseInt(document.getElementById('numberOfShares').value) > 0){
       this.trade.symbol = globals.symbol;
       this.trade.numOfShares = parseInt(document.getElementById('numberOfShares').value) * -1;  
       fetch(`${process.env.VUE_APP_REMOTE_API}/api/BuySell/`, {
@@ -82,12 +86,18 @@ methods: {
             }
           })
           .catch((err) => console.error(err));
-      
-      
+    }
+     else{
+       alert("You can only sell up to the amount of shares you own!");
+     }
+     
   }},
 computed: {
     symbol(){
         return globals.symbol;
+    },
+    numberOfShares(){
+        return globals.numberOfShares;
     },
     // trade(){
     //     trade.symbol = globals.symbol;
