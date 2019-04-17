@@ -2,13 +2,21 @@
 <div>
 <default-layout></default-layout>
 <h2>This is the page to buy/sell stocks.</h2>
-<form action="">
+<form v-if="isBuy" action="">
   <span>Symbol: {{symbol}}</span>
   <span>Current Price: {{price}}</span>
   <!-- <input type="number" min="0.01" step="0.01" placeholder="23.50"/> -->
   <span>Number of Shares:</span>
   <input type="number" placeholder="500" max="" min="0" id="numberOfShares">
-  <button class="btn btn-primary" @click.prevent="MakeTrade">Purchase Stock</button>
+  <button class="btn btn-primary" @click.prevent="BuyStocks">Purchase Stock</button>
+</form>
+<form v-if="!isBuy" action="">
+  <span>Symbol: {{symbol}}</span>
+  <span>Current Price: {{price}}</span>
+  <!-- <input type="number" min="0.01" step="0.01" placeholder="23.50"/> -->
+  <span>Number of Shares:</span>
+  <input type="number" placeholder="500" max="" min="0" id="numberOfShares">
+  <button class="btn btn-primary" @click.prevent="SellStocks">Sell Stock</button>
 </form>
 </div>
 </template>
@@ -37,9 +45,29 @@ created(){
     
 
 methods: {
-    MakeTrade(){
+    BuyStocks(){
       this.trade.symbol = globals.symbol;
       this.trade.numOfShares = parseInt(document.getElementById('numberOfShares').value);  
+      fetch(`${process.env.VUE_APP_REMOTE_API}/api/BuySell/`, {
+          method:'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + auth.getToken(),
+          },
+          body: JSON.stringify(this.trade),
+        })
+          .then((response) => {
+            if (response.ok) {
+              this.$router.push({ path: '/portfolio' });
+            }
+          })
+          .catch((err) => console.error(err));
+      
+      
+  },
+  SellStocks(){
+      this.trade.symbol = globals.symbol;
+      this.trade.numOfShares = parseInt(document.getElementById('numberOfShares').value) * -1;  
       fetch(`${process.env.VUE_APP_REMOTE_API}/api/BuySell/`, {
           method:'POST',
           headers: {
@@ -60,11 +88,14 @@ methods: {
 computed: {
     symbol(){
         return globals.symbol;
-    }
+    },
     // trade(){
     //     trade.symbol = globals.symbol;
     //     return trade.symbol;
     // }
+    isBuy(){
+      return globals.isBuy;
+    }
 },
     data() {
         return{

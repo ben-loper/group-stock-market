@@ -13,7 +13,8 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 
 export const globals = new Vue({
   data: {
-  symbol: ''
+  symbol: '',
+  isBuy: true
   }
   });
 

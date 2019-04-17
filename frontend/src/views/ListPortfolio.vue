@@ -20,15 +20,11 @@
             <td>${{parseFloat(stock.price).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",") }}</td>
             <td>${{parseFloat(CalculateMarketValue(stock.price, stock.numberOfShares)).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</td>
             <td></td>
-            <td><button class="btn btn-success" :value="stock.symbol" @click="SetPurchaseSymbol($event)">Buy</button>
-                
-                
-                <router-link
-                :to="{ name: 'trades'}"
-                tag="button"
-                class="btn btn-danger"
-                >Sell</router-link></td>
+            <td>
+                <button class="btn btn-success" :value="stock.symbol" @click="BuyShares($event)">Buy</button>
+                <button class="btn btn-danger" :value="stock.symbol" @click="SellShares($event)">Sell</button>              
             <!-- <td class="align-middle"></td> -->
+            </td>
           </tr>
         </tbody>
       </table>
@@ -48,9 +44,16 @@ export default {
   },
 methods: {
   
-SetPurchaseSymbol(event){
+BuyShares(event){
   console.log("We did it.");
   globals.symbol = event.target.value;
+  globals.isBuy = true;
+  this.$router.push({name:'trades'});
+},
+SellShares(event){
+  console.log("We did it.");
+  globals.symbol = event.target.value;
+  globals.isBuy = false;
   this.$router.push({name:'trades'});
 },
 
