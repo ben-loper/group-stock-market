@@ -36,7 +36,11 @@ namespace StockrWebApi.DAL
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand("INSERT INTO Transactions(Symbol, NumberOfShares, Price, Date, UserId) VALUES (@symbol, @numberOfShares, @price, @date, @userId);", conn);
-                    cmd.Parameters.AddWithValue("@symbol", transaction.Symbol);                    
+                    cmd.Parameters.AddWithValue("@symbol", transaction.Symbol);
+                    cmd.Parameters.AddWithValue("@numberOfShares", transaction.NumOfShares);
+                    cmd.Parameters.AddWithValue("@price", transaction.Price);
+                    cmd.Parameters.AddWithValue("@date", transaction.Date);
+                    cmd.Parameters.AddWithValue("@userId", transaction.UserId);
                     cmd.ExecuteNonQuery();
 
                    

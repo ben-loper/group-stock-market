@@ -11,7 +11,7 @@ namespace StockrWebApi.Models
         public string Symbol { get; set; }
         public int NumOfShares { get; set; }
         public decimal Price { get; set; }
-        public DateTime MyProperty
+        public DateTime Date
         {
             get
             {
