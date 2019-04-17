@@ -2,7 +2,7 @@
   <default-layout>
       <h2>Your Transaction History</h2>  
         <div id="portfolio-table">
-          <table class="table table-striped">
+          <table class="table table-striped" id="history-table">
           <thead class="thead-dark">
           <tr>
             <th scope="col">Date</th>
@@ -12,11 +12,11 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+          <tr  v-for="transaction in transactions" :key="transaction.Id">
+            <td>{{new Date(transaction.date).date}}</td>
+            <td>{{transaction.symbol}}</td>
+            <td>{{transaction.numOfShares}}</td>
+            <td>{{transaction.price}}</td>
           </tr>
         </tbody>
       </table>
@@ -44,7 +44,7 @@ export default {
 
   },
   created() {
-    fetch(`${process.env.VUE_APP_REMOTE_API}/api/BuySell/`, {
+    fetch(`${process.env.VUE_APP_REMOTE_API}/api/BuySell/AllTransactions`, {
       method: 'GET',
       headers: {
         Authorization: 'Bearer ' + auth.getToken(),
@@ -63,7 +63,7 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 button {
   margin-top: 0px !important;
   padding-left: 10px;
@@ -76,13 +76,14 @@ th {
 
 table {
   text-align: center;
+  background-color: white;
 }
 
 .table > tbody > tr > td {
   vertical-align: middle;
 }
 
-#portfolio-table {
+#history-table {
     border: 2px solid black;
     border-radius: 5px !important;
 }

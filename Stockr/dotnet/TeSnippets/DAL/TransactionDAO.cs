@@ -85,7 +85,7 @@ namespace StockrWebApi.DAL
             return results;
         }
 
-        List<PastTransaction> GetPastTransactions(int userId)
+        public List<PastTransaction> GetPastTransactions(int userId)
         {
             List<PastTransaction> results = new List<PastTransaction>();
 
@@ -107,7 +107,7 @@ namespace StockrWebApi.DAL
                             Symbol = Convert.ToString(reader["Symbol"]),
                             NumOfShares = Convert.ToInt32(reader["NumberOfShares"]),
                             Price = Convert.ToDecimal(reader["price"]),
-                            Date = Convert.ToDateTime(reader["Date"]),
+                            Date = (Convert.ToString(reader["Date"])),
                             UserId = Convert.ToInt32(reader["UserId"])
                         });
 

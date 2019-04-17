@@ -20,6 +20,5 @@ namespace StockrWebApi.DAL
 
         List<Company> GetCompanyNames();
 
-        List<PastTransaction> GetPastTransactions(int userId);
     }
 }

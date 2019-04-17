@@ -56,7 +56,7 @@ namespace StockrWebApi.Controllers
         {
             List<PastTransaction> pastTransactions = new List<PastTransaction>();
 
-            transactionDao.GetPastTransactions(GetCurrentUserId());
+            pastTransactions = transactionDao.GetPastTransactions(GetCurrentUserId());
 
 
             return pastTransactions;
