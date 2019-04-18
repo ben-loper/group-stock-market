@@ -142,4 +142,8 @@ html {
   /* border: 2px solid black; */
   border-radius: 5px;
 }
+
+tr:nth-child(even) {
+  background-color: #bbbbbb
+}
 </style>
