@@ -10,8 +10,8 @@
             <div id="leftColumn">
                 <div id="description">
                     Stockr is the world's greatest stock purchasing/tracking application.
-                    You can manage your portfolio, buy and sell stocks, follow favorites, and more!
-                    Over three people worldwide are getting things done with Stockr. What will YOU do?
+                    You can manage your portfolio, buy and sell stocks, follow hot stocks, and more! 
+                    Over four people worldwide are getting things done with Stockr. What will YOU do?
                 </div>
             </div>
             
