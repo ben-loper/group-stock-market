@@ -1,7 +1,7 @@
 <template>
 <div>
     <default-layout></default-layout>
-    <h2>Stock Detail</h2>
+    <h2 class="detail-h2">Stock Detail</h2>
     <div class="dropdown" style="margin-left: 100px">
         <select v-model="selected">
         <option disabled value="">-- Select One --</option>
@@ -17,11 +17,11 @@
     <div><strong> CEO: </strong>{{stockInfo.CEO}}</div>
     <div><strong> Description: </strong>{{stockInfo.description}}</div>
     <div><strong> Industry: </strong>{{stockInfo.industry}}</div>
-    <div><strong> 52-Week Range: </strong>${{stats.week52low}} -{{stats.week52high}}</div>
+    <div><strong> 52-Week Range: </strong>${{parseFloat(stats.week52low).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}} - ${{parseFloat(stats.week52high).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</div>
     </div>
     <div class="performance-info">
-    <div><strong> Shares Outstanding: </strong>{{stats.sharesOutstanding}}</div>
-    <div><strong> Market Cap: </strong>{{stats.marketcap}}</div>
+    <div><strong> Shares Outstanding: </strong>{{parseFloat(stats.sharesOutstanding).toFixed().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</div>
+    <div><strong> Market Cap: </strong>{{parseFloat(stats.marketcap).toFixed().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</div>
     <div><strong> P/E: </strong>{{stats.peRatio}}</div>
     <div><strong> Beta: </strong>{{(stats.beta.toFixed(2))}}</div>
     <div><strong> YTD Performance: </strong>
@@ -39,7 +39,7 @@
     </div>
     </div>
     </div>
-    <h5 v-if="stockInfo.companyName != null" class="current-price">Current Price: ${{price}}</h5>
+    <h5 v-if="stockInfo.companyName != null" class="current-price">Current Price: ${{parseFloat(price).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</h5>
     <button v-if="stockInfo.companyName != null" class="btn" id="button" :value="stockInfo.symbol" @click="BuyShares($event)">Buy</button>   
 </div>
 </template>
@@ -159,6 +159,10 @@ export default {
     margin-left: 2%;
 }
 
+.detail-h2 {
+    margin-left: 2%;
+}
+
 .dropdown {
     margin-left: 2% !important;
     margin-bottom: 2%;
@@ -208,6 +212,6 @@ export default {
 }
 
 .current-price {
-    margin-left: 13.6%;
+    margin-left: 13.4%;
 }
 </style>

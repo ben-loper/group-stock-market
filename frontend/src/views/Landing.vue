@@ -2,6 +2,7 @@
   <div id="landing">
     <default-layout></default-layout>
 
+<<<<<<< HEAD
     <div>
       <h2 class="landing-h2" style="float: left; margin-left: 15%;">What IS Stockr?</h2>
       <h2 class="landing-h2" style="margin-left: 64%; margin-right: 21%;">Market News</h2>
@@ -13,6 +14,23 @@
         Over three people worldwide are getting things done with Stockr. What will YOU do?
       </div>
     </div>
+=======
+        <div>    
+            <h2 class="landing-h2" style="float: left; margin-left: 15%;">What IS Stockr?</h2>
+            <h2 class="landing-h2" style="margin-left: 64%; margin-right: 21%;">Market News</h2>
+        </div>
+            <div id="leftColumn">
+                <div id="description">
+                    Stockr is the world's greatest stock purchasing/tracking application.
+                    You can manage your portfolio, buy and sell stocks, follow hot stocks, and more! 
+                    Over four people worldwide are getting things done with Stockr. What will YOU do?
+                </div>
+            </div>
+            
+                <div id="marketNews">
+                    <vue-rss-feed :feedUrl="feedUrl" :name="name" :limit="limit"/>
+                </div>
+>>>>>>> 0e027e7fb87e762ff1e49656f10a58c66c614998
 
     <div id="marketNews">
       <vue-rss-feed :feedUrl="feedUrl" :name="name" :limit="limit"/>

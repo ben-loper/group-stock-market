@@ -1,23 +1,24 @@
 <template>
 <div>
 <default-layout></default-layout>
-<h2>This is the page to buy/sell stocks.</h2>
+<h2 v-if="isBuy" class="trades-h2">Buy</h2>
+<h2 v-if="!isBuy" class="trades-h2">Sell</h2>
 <form v-if="isBuy" action="">
-  <span>Symbol: {{symbol}}</span>
-  <span>Current Price: {{price}}</span>
+  <div>Symbol: {{symbol}}</div>
+  <div>Current Price: {{price}}</div>
   <!-- <input type="number" min="0.01" step="0.01" placeholder="23.50"/> -->
-  <span>Number of Shares:</span>
-  <input type="number" placeholder="500" max="" min="0" id="numberOfShares">
-  <button class="btn btn-primary" @click.prevent="BuyStocks">Purchase Stock</button>
+  <div>Number of Shares:
+  <input type="number" placeholder="0" max="" min="0" id="numberOfShares"></div>
+  <button class="btn btn-primary" id="buy-button" @click.prevent="BuyStocks">Purchase Stock</button>
 </form>
 <form v-if="!isBuy" action="">
-  <span>Symbol: {{symbol}}</span>
-  <span>Current Price: {{price}}</span>
+  <div>Symbol: {{symbol}}</div>
+  <div>Current Price: {{price}}</div>
   <!-- <input type="number" min="0.01" step="0.01" placeholder="23.50"/> -->
-  <p>Current number of shares: {{numberOfShares}}</p>
-  <span>Number of Shares:</span>
-  <input type="number" placeholder="500" :max="numberOfShares" min="0" id="numberOfShares">
-  <button class="btn btn-primary" @click.prevent="SellStocks">Sell Stock</button>
+  <div>Current number of shares: {{numberOfShares}}</div>
+  <div>Number of Shares:
+  <input type="number" placeholder="0" :max="numberOfShares" min="0" id="numberOfShares"></div>
+  <button class="btn btn-primary" id="sell-button" @click.prevent="SellStocks">Sell Stock</button>
 </form>
 </div>
 </template>
@@ -123,8 +124,32 @@ computed: {
 </script>
 
 <style>
-h2 {
-    margin-left: 2%;
+.trades-h2 {
+    text-align: center;
+}
+
+#buy-button {
+    background-color: #611aa6 !important;
+    border: 1px solid #611aa6 !important;
+    color: white;
+    margin-left: 1% !important;
+    width: 11%;
+}
+
+#buy-button:hover {
+    background-color: blueviolet !important;
+}
+
+#sell-button {
+    background-color: #611aa6 !important;
+    border: 1px solid #611aa6 !important;
+    color: white;
+    margin-left: 1% !important;
+    width: 9%;
+}
+
+#sell-button:hover {
+    background-color: blueviolet !important;
 }
 
 </style>
