@@ -20,7 +20,7 @@
 
     <h2
       class="landing-h2"
-      style="margin-left: 17%; margin-right: 70%; position: relative; top: -355px;"
+      style="margin-left: 17%; margin-right: 70%; position: relative; top: -365px;"
     >Hot Stocks</h2>
 
     <div id="marketStuff">
@@ -71,7 +71,6 @@ export default {
           return resp.json();
         })
         .then(resp => {
-          //    alert(JSON.stringify(resp));
           this.hotStocks.push({ name: resp.symbol, price: resp.latestPrice });
           const test = this.hotStocks;
           this.$forceUpdate();
@@ -100,7 +99,7 @@ html {
   width: 42%;
   margin-bottom: 10pt;
   position: relative;
-  top: -355px;
+  top: -372px;
   background-color: #f5f5f5;
 }
 
@@ -122,7 +121,7 @@ html {
   margin-left: 46%;
   margin-right: 2%;
   padding: 10px;
-  height: 350pt;
+  height: 352pt;
   overflow-y: scroll;
   background-color: #f5f5f5;
 }
