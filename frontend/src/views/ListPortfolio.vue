@@ -19,7 +19,7 @@
             <td>{{ stock.numberOfShares }}</td>
             <td>${{parseFloat(stock.price).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",") }}</td>
             <td>${{parseFloat(CalculateMarketValue(stock.price, stock.numberOfShares)).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</td>
-            <td>{{stock.roi}}</td>
+            <td :class="(CalculateMarketValue(stock.price, stock.numberOfShares) - stock.paidInvestments) >= 0 ? 'good' : 'bad'">${{parseFloat(CalculateMarketValue(stock.price, stock.numberOfShares) - stock.paidInvestments).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</td>
             <td>
                 <button class="btn btn-success" :value="stock.symbol" @click="BuyShares($event)">Buy</button>
                 <button class="btn btn-danger" :value="stock.symbol" @click="SellShares($event)">Sell</button>              
@@ -112,14 +112,15 @@ GetTotalValues(){
       .then((data) => {
         this.transactions = data;
         this.CalculateTotalInvestment(this.transactions);
- 
+
         for(let i = 0; i < this.portfolio.length; i++){
           for(let j = 0; j < this.valuePerSymbol.length; j++){
             if(this.portfolio[i].symbol == this.valuePerSymbol[j].symbol){
-            this.portfolio[i].roi = this.valuePerSymbol[j].totalValue - this.CalculateMarketValue(this.portfolio[i].price, this.portfolio[i].numberOfShares);
+
+              this.portfolio[i].paidInvestments = this.valuePerSymbol[j].totalValue;           
+            
           }
         }
-
         console.log(this.portfolio);
       }
       })
@@ -134,7 +135,8 @@ GetTotalValues(){
       totalValues: [],
       valuePerSymbol: []
     }
-  },
+  }
+  ,
   beforeMount(){
     this.user = auth.getUser();
     
