@@ -33,7 +33,7 @@
         </thead>
         <tr v-for="stock in hotStocks" :key="stock.name">
           <td>{{ stock.name }}</td>
-          <td>{{ stock.price }}</td>
+          <td>${{ parseFloat(stock.price).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",") }}</td>
         </tr>
       </table>
     </div>
@@ -101,6 +101,7 @@ html {
   position: relative;
   top: -372px;
   background-color: #f5f5f5;
+  text-align: center;
 }
 
 #description {
