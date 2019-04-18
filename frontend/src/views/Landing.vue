@@ -144,6 +144,6 @@ html {
 }
 
 tr:nth-child(odd) {
-  background-color: #bbbbbb
+  background-color: #e4e4e4
 }
 </style>
