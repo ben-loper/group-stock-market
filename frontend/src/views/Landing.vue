@@ -143,7 +143,7 @@ html {
   border-radius: 5px;
 }
 
-tr:nth-child(even) {
+tr:nth-child(odd) {
   background-color: #bbbbbb
 }
 </style>
