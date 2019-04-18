@@ -19,7 +19,7 @@
             <td>{{ stock.numberOfShares }}</td>
             <td>${{parseFloat(stock.price).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",") }}</td>
             <td>${{parseFloat(CalculateMarketValue(stock.price, stock.numberOfShares)).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</td>
-            <td>{{stock.totalValue}}</td>
+            <td>{{stock.roi}}</td>
             <td>
                 <button class="btn btn-success" :value="stock.symbol" @click="BuyShares($event)">Buy</button>
                 <button class="btn btn-danger" :value="stock.symbol" @click="SellShares($event)">Sell</button>              
@@ -46,15 +46,13 @@ export default {
 methods: {
   
 BuyShares(event){
-  console.log("We did it.");
   globals.symbol = event.target.value;
   
-  console.log(event.target.numOfShares);
   globals.isBuy = true;
   this.$router.push({name:'trades'});
 },
 SellShares(event){
-  console.log("We did it.");
+  
   globals.numberOfShares = event.path[2].childNodes[1].innerText;
   globals.symbol = event.target.value;
   globals.isBuy = false;
@@ -89,11 +87,43 @@ CalculateTotalInvestment(transactions) {
       else{
         this.totalValues[transactions[i].symbol] = calculatedValue;
       }
-    
-    
+      
   }
-  
+  for(let item in this.totalValues){
+        let stockInfo = {};
+        stockInfo.symbol = item;
+        stockInfo.totalValue = this.totalValues[item];
+        this.valuePerSymbol.push(stockInfo);
+      }
 
+  
+},
+GetTotalValues(){
+  fetch(`${process.env.VUE_APP_REMOTE_API}/api/BuySell/AllTransactions`, {
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' + auth.getToken(),
+      },
+      credentials: 'same-origin',
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        this.transactions = data;
+        this.CalculateTotalInvestment(this.transactions);
+ 
+        for(let i = 0; i < this.portfolio.length; i++){
+          for(let j = 0; j < this.valuePerSymbol.length; j++){
+            if(this.portfolio[i].symbol == this.valuePerSymbol[j].symbol){
+            this.portfolio[i].roi = this.valuePerSymbol[j].totalValue - this.CalculateMarketValue(this.portfolio[i].price, this.portfolio[i].numberOfShares);
+          }
+        }
+
+        console.log(this.portfolio);
+      }
+      })
+      .catch((err) => console.error(err));
 }
 },
   data() {
@@ -101,18 +131,13 @@ CalculateTotalInvestment(transactions) {
       user: null,
       portfolio: [],
       transactions: {},
-      totalValues: []
+      totalValues: [],
+      valuePerSymbol: []
     }
   },
   beforeMount(){
     this.user = auth.getUser();
-    for(let i = 0; i < this.portfolio.length; i++){
-    for(let j = 0; j < this.totalValues.length; j++){
-      if(this.portfolio[i].symbol == this.totalValues[j].symbol){
-        this.portfolio.totalValue = this.totalValues[j];
-      }
-    }
-  }
+    
   },
     created() {
     fetch(`${process.env.VUE_APP_REMOTE_API}/api/BuySell/`, {
@@ -131,24 +156,10 @@ CalculateTotalInvestment(transactions) {
         data.forEach(stock => {
           this.GetCurrentPrice(stock);
         })
-        
         // GetCurrentPrice(data.symbol);
       })
-      .catch((err) => console.error(err));
-
-    fetch(`${process.env.VUE_APP_REMOTE_API}/api/BuySell/AllTransactions`, {
-      method: 'GET',
-      headers: {
-        Authorization: 'Bearer ' + auth.getToken(),
-      },
-      credentials: 'same-origin',
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        this.transactions = data;
-        this.CalculateTotalInvestment(this.transactions);       
+      .then(() => {
+        this.GetTotalValues();
       })
       .catch((err) => console.error(err));
   }
