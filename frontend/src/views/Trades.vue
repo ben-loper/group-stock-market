@@ -167,6 +167,9 @@ computed: {
 #numberOfShares {
   width: 7%;
   text-align: center;
+  margin-left: 0.5%;
+  border: 1px solid black;
+  border-radius: 5px;
 }
 
 .company-logo-trade {
