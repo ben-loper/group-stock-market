@@ -203,6 +203,10 @@ export default {
     width: 9%;
 }
 
+#button:hover {
+    background-color: blueviolet !important;
+}
+
 .current-price {
     margin-left: 13.6%;
 }
