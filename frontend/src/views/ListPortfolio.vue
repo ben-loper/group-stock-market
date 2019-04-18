@@ -19,7 +19,7 @@
             <td>{{ stock.numberOfShares }}</td>
             <td>${{parseFloat(stock.price).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",") }}</td>
             <td>${{parseFloat(CalculateMarketValue(stock.price, stock.numberOfShares)).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</td>
-            <td></td>
+            <td>{{stock.totalValue}}</td>
             <td>
                 <button class="btn btn-success" :value="stock.symbol" @click="BuyShares($event)">Buy</button>
                 <button class="btn btn-danger" :value="stock.symbol" @click="SellShares($event)">Sell</button>              
@@ -76,10 +76,23 @@ CalculateMarketValue(price, shares) {
   return marketValue;
 },
 CalculateTotalInvestment(transactions) {
-  for(let symbol in transactions){
+  for(let i = 0; i < transactions.length; i++){
+    
+      let calculatedValue = transactions[i].numOfShares * transactions[i].price;
+
+      if(transactions[i].symbol in this.totalValues){
+        
+        let previousTotal = this.totalValues[transactions[i].symbol];
+
+        this.totalValues[transactions[i].symbol] = previousTotal + calculatedValue;
+      }
+      else{
+        this.totalValues[transactions[i].symbol] = calculatedValue;
+      }
+    
     
   }
-
+  
 
 }
 },
@@ -87,12 +100,19 @@ CalculateTotalInvestment(transactions) {
     return{
       user: null,
       portfolio: [],
-      transactions: {}
+      transactions: {},
+      totalValues: []
     }
   },
   beforeMount(){
     this.user = auth.getUser();
-
+    for(let i = 0; i < this.portfolio.length; i++){
+    for(let j = 0; j < this.totalValues.length; j++){
+      if(this.portfolio[i].symbol == this.totalValues[j].symbol){
+        this.portfolio.totalValue = this.totalValues[j];
+      }
+    }
+  }
   },
     created() {
     fetch(`${process.env.VUE_APP_REMOTE_API}/api/BuySell/`, {
@@ -110,13 +130,13 @@ CalculateTotalInvestment(transactions) {
         //need to loop through portfolio for each symbol
         data.forEach(stock => {
           this.GetCurrentPrice(stock);
-          console.log(process.env.VUE_APP_REMOTE_API);
         })
+        
         // GetCurrentPrice(data.symbol);
       })
       .catch((err) => console.error(err));
 
-          fetch(`${process.env.VUE_APP_REMOTE_API}/api/BuySell/AllTransactions`, {
+    fetch(`${process.env.VUE_APP_REMOTE_API}/api/BuySell/AllTransactions`, {
       method: 'GET',
       headers: {
         Authorization: 'Bearer ' + auth.getToken(),
@@ -128,7 +148,7 @@ CalculateTotalInvestment(transactions) {
       })
       .then((data) => {
         this.transactions = data;
-        CalculateTotalInvestment(transactions);       
+        this.CalculateTotalInvestment(this.transactions);       
       })
       .catch((err) => console.error(err));
   }
