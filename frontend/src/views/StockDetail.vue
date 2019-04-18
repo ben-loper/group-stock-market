@@ -20,8 +20,8 @@
     <div><strong> 52-Week Range: </strong>${{stats.week52low}} -{{stats.week52high}}</div>
     </div>
     <div class="performance-info">
-    <div><strong> Shares Outstanding: </strong>{{stats.sharesOutstanding}}</div>
-    <div><strong> Market Cap: </strong>{{stats.marketcap}}</div>
+    <div><strong> Shares Outstanding: </strong>{{parseFloat(stats.sharesOutstanding).toFixed().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</div>
+    <div><strong> Market Cap: </strong>{{parseFloat(stats.marketcap).toFixed().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</div>
     <div><strong> P/E: </strong>{{stats.peRatio}}</div>
     <div><strong> Beta: </strong>{{(stats.beta.toFixed(2))}}</div>
     <div><strong> YTD Performance: </strong>
@@ -39,7 +39,7 @@
     </div>
     </div>
     </div>
-    <h5 v-if="stockInfo.companyName != null" class="current-price">Current Price: ${{price}}</h5>
+    <h5 v-if="stockInfo.companyName != null" class="current-price">Current Price: ${{parseFloat(price).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</h5>
     <button v-if="stockInfo.companyName != null" class="btn" id="button" :value="stockInfo.symbol" @click="BuyShares($event)">Buy</button>   
 </div>
 </template>
@@ -208,6 +208,6 @@ export default {
 }
 
 .current-price {
-    margin-left: 13.6%;
+    margin-left: 13.4%;
 }
 </style>
