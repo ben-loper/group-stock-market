@@ -15,7 +15,7 @@
           <tr  v-for="transaction in transactions" :key="transaction.Id">
             <td>{{transaction.date.substring(0, transaction.date.length - 11)}}</td>
             <td>{{transaction.symbol}}</td>
-            <td>{{transaction.numOfShares}}</td>
+            <td :class="(transaction.numOfShares) > 0 ? 'good' : 'bad'">{{transaction.numOfShares}}</td>
             <td>${{parseFloat(transaction.price).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</td>
           </tr>
         </tbody>
@@ -65,6 +65,14 @@ export default {
 </script>
 
 <style scoped>
+.good{
+    color: green;
+}
+
+.bad{
+    color: red;
+}
+
 button {
   margin-top: 0px !important;
   padding-left: 10px;
