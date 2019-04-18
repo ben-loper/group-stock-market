@@ -190,7 +190,7 @@ html {
 .landing-h2 {
     background-color: #f5f5f5;
     padding: 0.5%;
-    border: 2px solid black;
+    /* border: 2px solid black; */
     border-radius: 5px;
     text-align: center;
 }
@@ -198,7 +198,7 @@ html {
 .landing-h2>div {
     background-color: #f5f5f5;
     padding: 0.5%;
-    border: 2px solid black;
+    /* border: 2px solid black; */
     border-radius: 5px;
 }
 </style>
