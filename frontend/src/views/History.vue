@@ -1,8 +1,8 @@
 <template>
   <default-layout>
       <h2>Your Transaction History</h2>  
-        <div id="portfolio-table">
-          <table class="table table-striped" id="history-table">
+        <div id="history-table">
+          <table class="table table-striped">
           <thead class="thead-dark">
           <tr>
             <th scope="col">Date</th>
