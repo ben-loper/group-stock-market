@@ -55,7 +55,7 @@ export default {
 data() {
     return{
         hotStocks : [],
-        feedUrl: `https://cors-anywhere.herokuapp.com/http://rss.cnn.com/rss/money_markets.rss`,
+        feedUrl: `https://cors-anywhere.herokuapp.com/https://feeds.a.dj.com/rss/RSSMarketsMain.xml`,
         name: "",
         limit: 10
     }
