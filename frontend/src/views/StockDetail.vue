@@ -18,9 +18,9 @@
     <div><strong> Description: </strong>{{stockInfo.description}}</div>
     <div><strong> Industry: </strong>{{stockInfo.industry}}</div>
     <div><strong> 52-Week Range: </strong>${{parseFloat(stats.week52low).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}} - ${{parseFloat(stats.week52high).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</div>
+    <div><strong> Shares Outstanding: </strong>{{parseFloat(stats.sharesOutstanding).toFixed().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</div>
     </div>
     <div class="performance-info">
-    <div><strong> Shares Outstanding: </strong>{{parseFloat(stats.sharesOutstanding).toFixed().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</div>
     <div><strong> Market Cap: </strong>{{parseFloat(stats.marketcap).toFixed().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</div>
     <div><strong> P/E: </strong>{{stats.peRatio}}</div>
     <div><strong> Beta: </strong>{{(stats.beta.toFixed(2))}}</div>
