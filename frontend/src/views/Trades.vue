@@ -1,7 +1,8 @@
 <template>
 <div>
 <default-layout></default-layout>
-<h2>This is the page to buy/sell stocks.</h2>
+<h2 v-if="isBuy">Buy</h2>
+<h2 v-if="!isBuy">Sell</h2>
 <form v-if="isBuy" action="">
   <span>Symbol: {{symbol}}</span>
   <span>Current Price: {{price}}</span>
