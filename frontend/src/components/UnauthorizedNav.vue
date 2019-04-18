@@ -27,7 +27,7 @@
     <div class="navbar-collapse collapse">
       <ul class="navbar-nav ml-auto">
         <router-link tag="li" class="nav-item" to="/login" active-class="active" exact>
-          <a class="nav-link">Login</a>
+          <a class="nav-link">Login/Register</a>
         </router-link>
       </ul>
     </div>
