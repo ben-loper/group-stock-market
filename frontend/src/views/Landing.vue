@@ -3,7 +3,8 @@
     <default-layout></default-layout>
 
     <div>
-      <h2 class="landing-h2" style="float: left; margin-left: 15%;">What IS Stockr?</h2>
+      <h2 class="landing-h2" style="float: left; margin-left: 15%;">
+        What<span style="font-style: italic;">&nbsp;is &nbsp;</span>Stockr?</h2>
       <h2 class="landing-h2" style="margin-left: 64%; margin-right: 21%;">Market News</h2>
     </div>
     <div id="leftColumn">
@@ -93,7 +94,7 @@ html {
 #marketStuff {
   border-style: solid;
   border-width: 2px;
-  border-radius: 5px;
+  /* border-radius: 5px; */
   margin-left: 2%;
   float: left;
   width: 42%;
