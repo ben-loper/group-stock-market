@@ -4,19 +4,21 @@
 <h2 v-if="isBuy" class="trades-h2">Buy</h2>
 <h2 v-if="!isBuy" class="trades-h2">Sell</h2>
 <form v-if="isBuy" action="">
-  <div>Symbol: {{symbol}}</div>
-  <div>Current Price: {{price}}</div>
+  <img class="company-logo-trade" v-bind:src="image.url">
+  <div><strong>Symbol: </strong>{{symbol}}</div>
+  <div><strong>Current Price: </strong>${{parseFloat(price).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</div>
   <!-- <input type="number" min="0.01" step="0.01" placeholder="23.50"/> -->
-  <div>Number of Shares:
+  <div><strong>Number of Shares:</strong>
   <input type="number" placeholder="0" max="" min="0" id="numberOfShares"></div>
   <button class="btn btn-primary" id="buy-button" @click.prevent="BuyStocks">Purchase Stock</button>
 </form>
 <form v-if="!isBuy" action="">
-  <div>Symbol: {{symbol}}</div>
-  <div>Current Price: {{price}}</div>
+  <img class="company-logo-trade" v-bind:src="image.url">
+  <div><strong>Symbol: </strong>{{symbol}}</div>
+  <div><strong>Current Price: </strong>${{parseFloat(price).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</div>
   <!-- <input type="number" min="0.01" step="0.01" placeholder="23.50"/> -->
-  <div>Current number of shares: {{numberOfShares}}</div>
-  <div>Number of Shares:
+  <div><strong>Current Number of Shares: </strong>{{parseFloat(numberOfShares).toFixed().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</div>
+  <div><strong>Number of Shares: </strong>
   <input type="number" placeholder="0" :max="numberOfShares" min="0" id="numberOfShares"></div>
   <button class="btn btn-primary" id="sell-button" @click.prevent="SellStocks">Sell Stock</button>
 </form>
@@ -43,7 +45,15 @@ created(){
         this.trade.price = parseFloat(resp);
         this.$forceUpdate();
     });
-
+    fetch(`https://cloud.iexapis.com/beta/stock/${globals.symbol}/logo?token=pk_cdd72b15fa2a4735897c36067dd39008`)
+        .then((response) => {
+            return response.json();
+        })
+        .then((resp) => {
+            this.image= resp;
+            // this.$forceUpdate();
+        })
+        .catch((err) => console.error(err));
     
     },
     
@@ -92,7 +102,8 @@ methods: {
        alert("You can only sell up to the amount of shares you own!");
      }
      
-  }},
+  }
+ },
 computed: {
     symbol(){
         return globals.symbol;
@@ -112,6 +123,7 @@ computed: {
         return{
             user: null,
             price: String,
+            image: {},
 
         trade: {
             symbol: '',
@@ -150,6 +162,17 @@ computed: {
 
 #sell-button:hover {
     background-color: blueviolet !important;
+}
+
+#numberOfShares {
+  width: 7%;
+  text-align: center;
+}
+
+.company-logo-trade {
+  border: 2px solid black;
+  border-radius: 5px;
+  margin-bottom: 1%;
 }
 
 </style>
