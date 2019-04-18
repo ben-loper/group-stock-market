@@ -17,7 +17,7 @@
     <div><strong> CEO: </strong>{{stockInfo.CEO}}</div>
     <div><strong> Description: </strong>{{stockInfo.description}}</div>
     <div><strong> Industry: </strong>{{stockInfo.industry}}</div>
-    <div><strong> 52-Week Range: </strong>${{stats.week52low}} -{{stats.week52high}}</div>
+    <div><strong> 52-Week Range: </strong>${{parseFloat(stats.week52low).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}} - ${{parseFloat(stats.week52high).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</div>
     </div>
     <div class="performance-info">
     <div><strong> Shares Outstanding: </strong>{{parseFloat(stats.sharesOutstanding).toFixed().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</div>
