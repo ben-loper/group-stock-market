@@ -74,12 +74,20 @@ GetCurrentPrice(stock){
 CalculateMarketValue(price, shares) {
   let marketValue = price * shares;
   return marketValue;
+},
+CalculateTotalInvestment(transactions) {
+  for(let symbol in transactions){
+    
+  }
+
+
 }
 },
   data() {
     return{
       user: null,
-      portfolio: []
+      portfolio: [],
+      transactions: {}
     }
   },
   beforeMount(){
@@ -107,9 +115,24 @@ CalculateMarketValue(price, shares) {
         // GetCurrentPrice(data.symbol);
       })
       .catch((err) => console.error(err));
-      
-      
-  }}
+
+          fetch(`${process.env.VUE_APP_REMOTE_API}/api/BuySell/AllTransactions`, {
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' + auth.getToken(),
+      },
+      credentials: 'same-origin',
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        this.transactions = data;
+        CalculateTotalInvestment(transactions);       
+      })
+      .catch((err) => console.error(err));
+  }
+}
 </script>
 
 <style scoped>
@@ -140,5 +163,4 @@ table {
   margin-left: 0%;
   margin-bottom: 1%;
 }
-
 </style>
