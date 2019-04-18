@@ -108,7 +108,7 @@ body {
   height: 100%;
   width: 27%;
   margin-left: 37%;
-  margin-top: 9%;
+  margin-top: 3%;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
