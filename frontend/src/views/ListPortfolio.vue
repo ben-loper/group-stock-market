@@ -89,11 +89,36 @@ CalculateTotalInvestment(transactions) {
       else{
         this.totalValues[transactions[i].symbol] = calculatedValue;
       }
-    
-    
+       
   }
   
 
+},
+GetTotalValues(){
+  fetch(`${process.env.VUE_APP_REMOTE_API}/api/BuySell/AllTransactions`, {
+      method: 'GET',
+      headers: {
+        Authorization: 'Bearer ' + auth.getToken(),
+      },
+      credentials: 'same-origin',
+    })
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        this.transactions = data;
+
+        console.log(this.transactions);
+        this.CalculateTotalInvestment(this.transactions);
+
+        for(let i = 0; i < this.portfolio.length; i++){
+          for(let j = 0; j < this.totalValues.length; j++){
+            if(this.portfolio[i].symbol == this.totalValues[j].symbol){
+            this.portfolio.totalValue = this.totalValues[j];
+          }
+        }
+      }})
+      .catch((err) => console.error(err));
 }
 },
   data() {
@@ -106,13 +131,7 @@ CalculateTotalInvestment(transactions) {
   },
   beforeMount(){
     this.user = auth.getUser();
-    for(let i = 0; i < this.portfolio.length; i++){
-    for(let j = 0; j < this.totalValues.length; j++){
-      if(this.portfolio[i].symbol == this.totalValues[j].symbol){
-        this.portfolio.totalValue = this.totalValues[j];
-      }
-    }
-  }
+    
   },
     created() {
     fetch(`${process.env.VUE_APP_REMOTE_API}/api/BuySell/`, {
@@ -131,24 +150,9 @@ CalculateTotalInvestment(transactions) {
         data.forEach(stock => {
           this.GetCurrentPrice(stock);
         })
-        
+        this.GetTotalValues();
+        console.log(this.totalValues)
         // GetCurrentPrice(data.symbol);
-      })
-      .catch((err) => console.error(err));
-
-    fetch(`${process.env.VUE_APP_REMOTE_API}/api/BuySell/AllTransactions`, {
-      method: 'GET',
-      headers: {
-        Authorization: 'Bearer ' + auth.getToken(),
-      },
-      credentials: 'same-origin',
-    })
-      .then((response) => {
-        return response.json();
-      })
-      .then((data) => {
-        this.transactions = data;
-        this.CalculateTotalInvestment(this.transactions);       
       })
       .catch((err) => console.error(err));
   }
