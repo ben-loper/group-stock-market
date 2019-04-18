@@ -1,7 +1,7 @@
 <template>
 <div>
     <default-layout></default-layout>
-    <h2>Stock Detail</h2>
+    <h2 class="detail-h2">Stock Detail</h2>
     <div class="dropdown" style="margin-left: 100px">
         <select v-model="selected">
         <option disabled value="">-- Select One --</option>
@@ -156,6 +156,10 @@ export default {
 }
 
 .detail-info {
+    margin-left: 2%;
+}
+
+.detail-h2 {
     margin-left: 2%;
 }
 

@@ -1,8 +1,8 @@
 <template>
 <div>
 <default-layout></default-layout>
-<h2 v-if="isBuy">Buy</h2>
-<h2 v-if="!isBuy">Sell</h2>
+<h2 v-if="isBuy" class="trades-h2">Buy</h2>
+<h2 v-if="!isBuy" class="trades-h2">Sell</h2>
 <form v-if="isBuy" action="">
   <div>Symbol: {{symbol}}</div>
   <div>Current Price: {{price}}</div>
@@ -124,8 +124,8 @@ computed: {
 </script>
 
 <style>
-h2 {
-    margin-left: 2%;
+.trades-h2 {
+    text-align: center;
 }
 
 #buy-button {
