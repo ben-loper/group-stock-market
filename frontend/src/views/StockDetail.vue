@@ -11,6 +11,7 @@
 
     <div v-if="stockInfo.companyName != null" class="detail-info">
     <img class="company-logo" v-bind:src="image.url">
+
     <div class="company-info">
     <div class="basic-info">
     <h5><strong>{{stockInfo.companyName}} | {{stockInfo.symbol}}</strong></h5>
@@ -20,7 +21,7 @@
     <div><strong> 52-Week Range: </strong>${{parseFloat(stats.week52low).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}} - ${{parseFloat(stats.week52high).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</div>
     <div><strong> Shares Outstanding: </strong>{{parseFloat(stats.sharesOutstanding).toFixed().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</div>
     </div>
-    <div class="performance-info">
+    <div id="performance-info">
     <div><strong> Market Cap: </strong>{{parseFloat(stats.marketcap).toFixed().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</div>
     <div><strong> P/E: </strong>{{stats.peRatio}}</div>
     <div><strong> Beta: </strong>{{(stats.beta.toFixed(2))}}</div>
@@ -36,11 +37,12 @@
     {{((parseFloat(this.stats.month6ChangePercent)*100).toFixed(2))}}%</span></div>
     <div><strong> 12-Month Performance: </strong><span :class="((parseFloat(this.stats.year1ChangePercent)*100).toFixed(2)) > 0 ? 'good' : 'bad'">
         {{((parseFloat(this.stats.year1ChangePercent)*100).toFixed(2))}}%</span></div>
+        <canvas id="price-hist"></canvas>
     </div>
     </div>
     </div>
     <h5 v-if="stockInfo.companyName != null" class="current-price">Current Price: ${{parseFloat(price).toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}}</h5>
-    <button v-if="stockInfo.companyName != null" class="btn" id="button" :value="stockInfo.symbol" @click="BuyShares($event)">Buy</button>   
+    <button v-if="stockInfo.companyName != null" class="btn" id="button" :value="stockInfo.symbol" @click="BuyShares($event)">Buy</button> 
 </div>
 </template>
 
@@ -131,10 +133,21 @@ export default {
                 .then((resp) => {
                     this.stats= resp;
                     // this.$forceUpdate();
-                })            
+                })         
+                .catch((err) => console.error(err));
+
+                fetch(`https://cloud.iexapis.com/v1/stock/${symbol}/chart/2y/quote?token=pk_876eb03a33ae4de0b3b9dbf6eaa9c2bd`)
+                .then((response) => {
+                    return response.json();
+                })
+                .then((histPrices) => {
+                    populateData(histPrices);
+                    // this.$forceUpdate();
+                })         
                 .catch((err) => console.error(err));
             }
         },
+    
         BuyShares(event){
             console.log("We did it.");
             globals.symbol = event.target.value;
@@ -144,6 +157,75 @@ export default {
        
     }
 }
+function populateGraph(monthsAndYears, avgPrices) {
+        
+        const oldCanvas = document.getElementById('price-hist');
+        if(oldCanvas !== null){
+            const parentDiv = document.getElementById('performance-info');
+            console.log(parentDiv);
+            oldCanvas.parentNode.removeChild(oldCanvas);
+
+            const newCanvas = document.createElement('canvas');
+            newCanvas.id = 'price-hist';
+            parentDiv.append(newCanvas);
+        }
+
+        const ctx = document.getElementById('price-hist').getContext('2d');
+        
+        const chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: 'line',
+
+            // The data for our dataset
+            data: {
+            labels: monthsAndYears,
+            datasets: [
+                {
+                label: 'Average Stock Prices',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: avgPrices,
+                fill: false
+                }
+            ]
+    },
+
+    // Configuration options go here
+    options: {
+    }
+    
+  });
+}
+
+function populateData(histPrices){
+            const monthAndYear = [];
+            const avgPrices = [];
+
+            let runningAvgPrice = 0;
+
+            for (let i = 0; i < histPrices.length; i++) {
+                const priceMonthYear = histPrices[i].date.substr(0, 7);
+                const avgPrice = (histPrices[i].open + histPrices[i].close) / 2;
+                let counter = 0;
+
+                if (monthAndYear.includes(priceMonthYear)) {
+                if (counter !== 0) {
+                    runningAvgPrice = avgPrice + runningAvgPrice / counter;
+                } else {
+                    runningAvgPrice = avgPrice;
+                }
+                } else {
+                if (runningAvgPrice === 0) {
+                    runningAvgPrice = avgPrice;
+                } else {
+                    monthAndYear.push(priceMonthYear);
+                    avgPrices.push(Math.round(runningAvgPrice * 100) / 100);
+                    runningAvgPrice = avgPrice;
+                }
+                }
+        }
+        populateGraph(monthAndYear, avgPrices);
+        }
 </script>
 
 <style>
@@ -153,10 +235,6 @@ export default {
 
 .bad{
     color: red;
-}
-
-.detail-info {
-    margin-left: 2%;
 }
 
 .detail-h2 {
@@ -181,6 +259,7 @@ export default {
 .detail-info {
     display: flex;
     justify-content: center;
+    margin-left: 2%;
 }
 
 .company-info {
@@ -194,7 +273,7 @@ export default {
     padding-left: 2%;
 }
 
-.performance-info {
+#performance-info {
     width: 50%;
     padding-left: 1%;
 }
